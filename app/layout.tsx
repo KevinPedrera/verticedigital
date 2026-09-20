@@ -1,4 +1,4 @@
 import type { Metadata } from "next";
 import "./globals.css";
-export const metadata: Metadata = { title:"Nexo Digital | Desarrollo web y estrategia", description:"Sistemas web, presencia institucional y estrategia digital para organizaciones.", icons:{icon:"/favicon.svg",shortcut:"/favicon.svg"} };
+export const metadata: Metadata = { title:"Vértice Digital | Desarrollo web y estrategia", description:"Sistemas web, presencia institucional y estrategia digital para organizaciones.", icons:{icon:"/favicon.svg",shortcut:"/favicon.svg"} };
 export default function RootLayout({children}:Readonly<{children:React.ReactNode}>){return <html lang="es"><body>{children}</body></html>}
