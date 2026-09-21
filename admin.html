@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Administración - Citas Vértice</title>
+  <style>
+    :root { --ink: #2d1a32; --paper: #f6f2f7; --accent: #d5644f; --muted: #6d6171; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Arial, sans-serif; padding: 40px 20px; }
+    .wrap { max-width: 1120px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+    h1 { margin-top: 0; font-family: Georgia, serif; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 14px; }
+    th, td { text-align: left; padding: 12px; border-bottom: 1px solid #ddd2de; }
+    th { background: var(--ink); color: white; font-weight: bold; }
+    tr:hover { background: #f9f9f9; }
+    .status { font-weight: bold; padding: 4px 8px; border-radius: 4px; font-size: 12px; }
+    .btn-reload { padding: 10px 16px; background: var(--accent); color: white; border: none; cursor: pointer; border-radius: 4px; font-weight: bold; }
+    .btn-reload:hover { opacity: 0.9; }
+    .loading { text-align: center; padding: 40px; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <h1>Registro de Citas</h1>
+      <button class="btn-reload" onclick="loadCitas()">Actualizar Datos</button>
+    </div>
+    
+    <div id="table-container">
+      <div class="loading" id="loading">Cargando citas...</div>
+      <table id="citas-table" style="display: none;">
+        <thead>
+          <tr>
+            <th>Fecha de Registro</th>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Fecha/Hora Cita</th>
+            <th>Necesidad</th>
+            <th>Modalidad</th>
+            <th>Notificación</th>
+            <th>WhatsApp</th>
+            <th>Mensaje</th>
+          </tr>
+        </thead>
+        <tbody id="citas-body">
+          <!-- Datos insertados dinámicamente -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    // URL DEL GOOGLE APPS SCRIPT WEB APP (Debe ser la misma del index.html)
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbx3swhCUwmoGW7Y2pspvjthqHaJfaNAVkwnjmqjNvAUclLPd76K7VDahIpsI3e5JanH2w/exec';
+
+    function loadCitas() {
+      if (scriptURL === 'REEMPLAZAR_CON_URL_DE_APPS_SCRIPT') {
+        document.getElementById('loading').innerText = 'Falta configurar la URL del Web App de Google en el código.';
+        return;
+      }
+
+      document.getElementById('loading').style.display = 'block';
+      document.getElementById('citas-table').style.display = 'none';
+      const tbody = document.getElementById('citas-body');
+      tbody.innerHTML = '';
+
+      fetch(scriptURL + '?action=getCitas')
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById('loading').style.display = 'none';
+          document.getElementById('citas-table').style.display = 'table';
+          
+          if(data.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;">No hay citas registradas aún.</td></tr>';
+            return;
+          }
+
+          // Invertimos para ver las más recientes primero
+          data.reverse().forEach(row => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+              <td>${new Date(row.timestamp).toLocaleString()}</td>
+              <td><strong>${row.nombre}</strong></td>
+              <td>${row.correo}</td>
+              <td style="color: #d5644f; font-weight: bold;">${new Date(row.fecha).toLocaleString()}</td>
+              <td>${row.necesidad}</td>
+              <td>${row.modalidad}</td>
+              <td>${row.notificacion}</td>
+              <td>${row.whatsapp || '-'}</td>
+              <td><small>${row.mensaje}</small></td>
+            `;
+            tbody.appendChild(tr);
+          });
+        })
+        .catch(err => {
+          document.getElementById('loading').innerText = 'Error al cargar las citas.';
+          console.error(err);
+        });
+    }
+
+    // Cargar al inicio
+    loadCitas();
+  </script>
+</body>
+</html>
