@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" fill="none">
+  <defs>
+    <!-- Gradiente Morado Real Vértice Profundo -->
+    <linearGradient id="purpleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4a2a53" />
+      <stop offset="40%" stop-color="#2d1a32" />
+      <stop offset="100%" stop-color="#180e1b" />
+    </linearGradient>
+
+    <!-- Gradiente Terracota Acento Lujoso -->
+    <linearGradient id="terracottaGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f29582" />
+      <stop offset="45%" stop-color="#d5644f" />
+      <stop offset="100%" stop-color="#9e3623" />
+    </linearGradient>
+
+    <!-- Gradiente Oro Champán / Platino para bisel técnico -->
+    <linearGradient id="goldBezel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fdfcfd" />
+      <stop offset="50%" stop-color="#e8dfeb" />
+      <stop offset="100%" stop-color="#bbaec2" />
+    </linearGradient>
+
+    <!-- Gradiente Sombra e Iluminación 3D Facetas -->
+    <linearGradient id="facetShadow" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1f1222" />
+      <stop offset="100%" stop-color="#0c070e" />
+    </linearGradient>
+
+    <!-- Filtro de Sombra de Alta Definición para el Escudo Central -->
+    <filter id="shieldShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#2d1a32" flood-opacity="0.35" />
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#d5644f" flood-opacity="0.25" />
+    </filter>
+
+    <!-- Resplandor Sutil del Núcleo -->
+    <filter id="coreGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- ==============================================
+       1. ESCUDO EXTERIOR / ANILLO TÉCNICO DE SEGURIDAD
+       ============================================== -->
+  <!-- Anillo exterior calibrado (relojería y alta ingeniería) -->
+  <circle cx="100" cy="100" r="92" stroke="#ddd2de" stroke-width="1.5" stroke-dasharray="4 6" opacity="0.7" />
+  <circle cx="100" cy="100" r="84" stroke="url(#purpleGradient)" stroke-width="1" opacity="0.4" />
+
+  <!-- 4 Coordenadas Cardinales de Precisión (Norte, Sur, Este, Oeste) -->
+  <line x1="100" y1="4" x2="100" y2="12" stroke="#d5644f" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="100" y1="188" x2="100" y2="196" stroke="#d5644f" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="4" y1="100" x2="12" y2="100" stroke="#d5644f" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="188" y1="100" x2="196" y2="100" stroke="#d5644f" stroke-width="2.5" stroke-linecap="round" />
+
+  <!-- ==============================================
+       2. BLASÓN / ESCUDO GEOMÉTRICO DE SEGURIDAD
+       ============================================== -->
+  <!-- Silueta del Escudo Hexagonal de Seguridad (Trust & Cyber-protection) -->
+  <path d="M100 24 
+           L158 54 
+           L158 122 
+           C158 152 100 178 100 178 
+           C100 178 42 152 42 122 
+           L42 54 Z" 
+        fill="url(#purpleGradient)" 
+        stroke="url(#terracottaGradient)" 
+        stroke-width="2" 
+        filter="url(#shieldShadow)" />
+
+  <!-- Bisel Interior del Escudo (Efecto Metal Pulido) -->
+  <path d="M100 32 
+           L150 58 
+           L150 118 
+           C150 144 100 166 100 166 
+           C100 166 50 144 50 118 
+           L50 58 Z" 
+        fill="none" 
+        stroke="#ffffff" 
+        stroke-width="1" 
+        opacity="0.22" />
+
+  <!-- ==============================================
+       3. EL VÉRTICE ESCULPIDO TRIDIMENSIONAL (MONOGRAMA V)
+       ============================================== -->
+  
+  <!-- Faceta Izquierda (Ingeniería de Software · Arquitectura Robusta) -->
+  <path d="M62 60 
+           L84 60 
+           L100 132 
+           L88 132 
+           L62 60 Z" 
+        fill="url(#goldBezel)" 
+        opacity="0.95" />
+
+  <!-- Faceta Izquierda Sombra Interior (Profundidad) -->
+  <path d="M78 60 
+           L84 60 
+           L100 132 
+           L94 132 Z" 
+        fill="url(#facetShadow)" 
+        opacity="0.45" />
+
+  <!-- Faceta Derecha (Arte, Experiencia y Seguridad · Terracota Brillante) -->
+  <path d="M138 60 
+           L116 60 
+           L100 132 
+           L112 132 
+           L138 60 Z" 
+        fill="url(#terracottaGradient)" />
+
+  <!-- Reflejo de luz en la arista derecha -->
+  <path d="M116 60 
+           L122 60 
+           L104 132 
+           L100 132 Z" 
+        fill="#ffffff" 
+        opacity="0.3" />
+
+  <!-- ==============================================
+       4. NÚCLEO CENTRAL DE PRECISIÓN (EL VÉRTICE / DIAMANTE)
+       ============================================== -->
+  <!-- Eje Geométrico Superior: Diamante / Cumbre -->
+  <polygon points="100,48 108,60 100,72 92,60" fill="#ffffff" filter="url(#coreGlow)" />
+  <polygon points="100,52 105,60 100,68 95,60" fill="url(#terracottaGradient)" />
+
+  <!-- Línea central de plomada (simboliza equilibrio matemático) -->
+  <line x1="100" y1="72" x2="100" y2="128" stroke="#ffffff" stroke-width="1.2" opacity="0.3" stroke-dasharray="2 3" />
+
+  <!-- Base del Vértice: Punto de Convergencia / Candado de Seguridad -->
+  <circle cx="100" cy="138" r="4.5" fill="#ffffff" />
+  <circle cx="100" cy="138" r="2.5" fill="url(#terracottaGradient)" />
+
+  <!-- Pequeño destello de solidez en la punta inferior del escudo -->
+  <polygon points="100,166 102.5,172 100,175 97.5,172" fill="#d5644f" />
+</svg>

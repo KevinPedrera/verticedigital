@@ -1,339 +1,2189 @@
 <!doctype html>
-<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Vértice Digital</title><meta name="description" content="Desarrollo web y estrategia digital para organizaciones."><style>
-:root{--ink:#2d1a32;--paper:#f6f2f7;--accent:#d5644f;--muted:#6d6171;--success:#2e7d4f}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,sans-serif}.wrap{width:min(1120px,calc(100% - 40px));margin:auto}a{color:inherit;text-decoration:none}.nav{height:80px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ddd2de}.brand{display:flex;gap:10px;align-items:center;font-size:13px;font-weight:bold;line-height:.9}.brand img{width:34px;height:34px;border-radius:50%;object-fit:cover;background:white}.nav nav{display:flex;gap:24px;font-size:13px;color:var(--muted)}.hero{min-height:630px;display:grid;grid-template-columns:1fr .9fr;align-items:center;gap:70px}.tag{color:var(--accent);font-size:11px;font-weight:bold;letter-spacing:.16em;text-transform:uppercase}.hero h1,.heading{margin:17px 0 0;font:400 clamp(48px,6vw,88px)/.94 Georgia,serif;letter-spacing:-.07em}.hero em{color:var(--accent);font-style:normal}.hero p{max-width:430px;color:var(--muted);line-height:1.7}.button{display:inline-block;margin-top:14px;padding:16px 21px;background:var(--ink);color:white;font-size:13px;font-weight:bold;border:none;cursor:pointer;transition:all .3s ease}.button:hover{background:var(--accent);transform:translateY(-2px)}.button:disabled{opacity:.6;cursor:not-allowed;transform:none}.visual{height:480px;position:relative;overflow:hidden;background:#2d1a32}.visual>img:first-child{width:100%;height:100%;object-fit:cover;animation:zoom 13s ease-in-out infinite alternate}.visual .mark{position:absolute;width:40%;right:8%;top:7%;opacity:.55;animation:float 6s ease-in-out infinite}.intro{padding:105px 12%;border-top:1px solid #ddd2de}.intro p:last-child{font:400 clamp(27px,3.5vw,48px)/1.15 Georgia,serif;letter-spacing:-.04em}.services{padding:30px 0 120px;display:grid;grid-template-columns:.8fr 1.2fr;gap:80px}.heading{font-size:clamp(42px,5vw,70px)}.list{border-top:1px solid #d8ccd9}.service{padding:25px 0;border-bottom:1px solid #d8ccd9;display:grid;grid-template-columns:45px 1fr;gap:10px}.service span,.num{color:var(--accent);font-size:11px}.service h3,.card h3{margin:0;font:400 24px Georgia,serif}.service p,.card p{color:var(--muted);line-height:1.6;font-size:14px}.portfolio{padding:115px 0;background:var(--ink);color:white}.portfolio .tag{color:#f0ad92}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:48px}.art{height:230px;display:grid;place-items:center;background:#dfad9b;color:var(--ink);font:55px Georgia,serif}.card:nth-child(2) .art{background:#9b7bab;color:white}.card:nth-child(3) .art{background:#719398;color:white}.card h3{margin-top:14px;font-size:27px}.card p{color:#d5c7d6}.about{padding:120px 0;background:#e9dce9}.about-head{text-align:center;max-width:760px;margin:auto}.about-head p:last-child{color:var(--muted);line-height:1.6}.people{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:55px}.person{padding:31px;background:rgba(255,255,255,.62);border-top:2px solid var(--accent);transition:.3s}.person:hover{transform:translateY(-8px);box-shadow:0 16px 36px #2d1a3220}.initial{display:grid;place-items:center;width:62px;height:62px;border-radius:50%;background:var(--ink);color:white;font:22px Georgia,serif}.person h3{margin:43px 0 7px;font:32px Georgia,serif}.person small{color:var(--accent);font-weight:bold;letter-spacing:.08em}
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vértice Digital · Atelier de Ingeniería y Diseño Web</title>
+  <meta name="description" content="Sistemas web a medida, presencia institucional y consultoría digital con estándar de alta ingeniería.">
+  <link rel="icon" type="image/svg+xml" href="public/favicon.svg">
 
-/* ===== BOOKING SECTION ===== */
-.booking{padding:120px 0;display:grid;grid-template-columns:.8fr 1.2fr;gap:70px;align-items:start}
-.booking-info .steps{margin-top:30px;display:flex;flex-direction:column;gap:12px}
-.booking-info .step{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--muted)}
-.booking-info .step-num{width:28px;height:28px;border-radius:50%;background:var(--ink);color:white;display:grid;place-items:center;font-size:11px;font-weight:bold;flex-shrink:0}
-.booking form{padding:34px;background:#ede5ee;border-radius:2px;position:relative;overflow:hidden}
-.booking input,.booking select,.booking textarea{width:100%;margin:7px 0 18px;padding:10px 0;border:0;border-bottom:1px solid #cdbfce;background:transparent;font:14px Arial;color:var(--ink);transition:border-color .3s}
-.booking input:focus,.booking select:focus,.booking textarea:focus{outline:none;border-bottom-color:var(--accent)}
-.booking select{cursor:pointer;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236d6171' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 4px center}
-.booking label{font-size:12px;font-weight:bold;display:block}
-.booking .form-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.booking .form-note{font-size:12px;color:var(--muted);line-height:1.5;margin-top:4px}
-.booking .optional-tag{font-weight:normal;color:var(--muted);font-style:italic}
-.booking .error-text{color:var(--accent);font-size:11px;margin:-12px 0 14px;display:none}
+  <!-- Google Fonts: Cormorant Garamond, Montserrat, Cinzel -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-/* Loading Overlay */
-.form-overlay{position:absolute;inset:0;background:rgba(237,229,238,.92);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;opacity:0;pointer-events:none;transition:opacity .4s ease;z-index:10;backdrop-filter:blur(2px)}
-.form-overlay.active{opacity:1;pointer-events:all}
-.spinner{width:38px;height:38px;border:3px solid #cdbfce;border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite}
-.form-overlay p{font-size:13px;color:var(--muted);font-weight:bold;letter-spacing:.05em}
+  <style>
+    :root {
+      /* Identidad Vértice: Morado Berenjena Noble, Lavanda Pálido y Terracota Cálido */
+      --ink: #2d1a32;             /* Morado profundo distintivo */
+      --ink-dark: #211225;        /* Morado noche */
+      --paper: #f6f2f7;           /* Lienzo lavanda seda suave */
+      --paper-pure: #ffffff;      /* Blanco puro para tarjetas */
+      --paper-subtle: #ede5ee;    /* Lavanda de soporte para formularios */
+      --paper-mauve: #e9dce9;     /* Malva para secciones de contraste suave */
+      
+      --accent: #d5644f;          /* Terracota coral de acento */
+      --accent-soft: #f0ad92;     /* Terracota pálido */
+      --accent-glow: rgba(213, 100, 79, 0.28);
 
-/* Success State */
-.form-success{position:absolute;inset:0;background:#ede5ee;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:40px;text-align:center;opacity:0;pointer-events:none;transition:opacity .5s ease;z-index:11}
-.form-success.active{opacity:1;pointer-events:all}
-.success-icon{width:64px;height:64px;border-radius:50%;background:var(--success);display:grid;place-items:center;animation:popIn .5s cubic-bezier(.34,1.56,.64,1) forwards;transform:scale(0)}
-.success-icon svg{width:32px;height:32px;stroke:white;stroke-width:2.5;fill:none;stroke-dasharray:40;stroke-dashoffset:40;animation:drawCheck .4s .4s ease forwards}
-.form-success h3{margin:6px 0 0;font:28px Georgia,serif;color:var(--ink)}
-.form-success p{color:var(--muted);font-size:14px;line-height:1.6;max-width:320px}
-.form-success button{padding:14px 24px;background:var(--ink);color:white;border:none;font-size:13px;font-weight:bold;cursor:pointer;margin-top:8px;transition:all .3s}
-.form-success button:hover{background:var(--accent)}
+      --muted: #6d6171;           /* Gris ciruela para textos secundarios */
+      --muted-light: #9c90a1;     /* Ciruela claro */
+      --line: #ddd2de;            /* Separador en lila sutil */
+      --line-strong: #cdbfce;     /* Borde de inputs con alto contraste */
 
-/* Error State */
-.form-error{padding:12px 16px;background:#fce8e6;border-left:3px solid var(--accent);border-radius:2px;margin-bottom:18px;font-size:13px;color:#6d2a20;display:none;animation:slideDown .3s ease}
-.form-error.active{display:block}
+      --success: #2e7d4f;
+      --danger: #b83d31;
+    }
 
-@keyframes spin{to{transform:rotate(360deg)}}
-@keyframes popIn{to{transform:scale(1)}}
-@keyframes drawCheck{to{stroke-dashoffset:0}}
-@keyframes slideDown{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
-@keyframes zoom{to{transform:scale(1.08)}}
-@keyframes float{50%{transform:translateY(14px)}}
-@media(max-width:700px){.nav nav{display:none}.hero,.services,.booking{grid-template-columns:1fr;gap:38px}.hero{padding:55px 0}.visual{height:380px}.cards,.people{grid-template-columns:1fr}.intro{padding:70px 0}.portfolio,.about,.booking{padding:75px 0}.booking .form-row{grid-template-columns:1fr}}
-</style></head><body>
-<header class="nav wrap"><a class="brand" href="#inicio"><img src="public/vertice-mark.png" alt="Vértice Digital"><span>Vértice<br>Digital</span></a><nav><a href="#servicios">Servicios</a><a href="#portafolio">Portafolio</a><a href="#nosotros">Nosotros</a></nav><a href="#agenda">Agendar ↗</a></header>
-<main><section id="inicio" class="hero wrap"><div><p class="tag">Estudio digital · Ecuador</p><h1>Su operación<br>más clara.<br><em>Su marca</em> más visible.</h1><p>Creamos sistemas y sitios web que convierten procesos dispersos en experiencias simples para su equipo y sus clientes.</p><a class="button" href="#agenda">Conversemos sobre su proyecto →</a></div><div class="visual"><img src="public/vertice-hero.png" alt="Visual abstracto de tecnología y estrategia"><img class="mark" src="public/vertice-mark.png" alt=""></div></section>
-<section class="intro wrap"><p class="tag">Nuestro punto de partida</p><p>No se trata de tener más tecnología. Se trata de contar con la herramienta adecuada, bien diseñada y fácil de usar.</p></section>
-<section id="servicios" class="services wrap"><div><p class="tag">Lo que hacemos</p><h2 class="heading">Diseño digital<br>con propósito.</h2></div><div class="list"><article class="service"><span>01</span><div><h3>Sistemas web</h3><p>Plataformas a medida para organizar procesos y centralizar información importante.</p></div></article><article class="service"><span>02</span><div><h3>Presencia institucional</h3><p>Sitios claros y administrables para mostrar una organización con seriedad.</p></div></article><article class="service"><span>03</span><div><h3>Estrategia digital</h3><p>Una propuesta concreta para que su marca comunique mejor.</p></div></article></div></section>
-<section id="portafolio" class="portfolio"><div class="wrap"><p class="tag">Experiencia seleccionada</p><h2 class="heading">Proyectos que<br>puede explorar.</h2><div class="cards"><article class="card"><div class="art">{ }</div><p class="tag">Gestión académica</p><h3>Control estudiantil</h3><p>Registro, consulta y seguimiento académico.</p></article><article class="card"><div class="art">09:30</div><p class="tag">Operación institucional</p><h3>Sistema de horarios</h3><p>Información clara para coordinación, docentes y estudiantes.</p></article><article class="card"><div class="art">§</div><p class="tag">Presencia profesional</p><h3>Estudio jurídico</h3><p>Una web institucional que genera confianza y facilita el contacto.</p></article></div></div></section>
-<section id="nosotros" class="about"><div class="wrap"><div class="about-head"><p class="tag">Detrás de Vértice</p><h2 class="heading">Un sueño compartido:<br><em>crear soluciones</em><br>que abran camino.</h2><p>Dos desarrolladores que creen que las buenas ideas merecen una ejecución clara, cercana y bien hecha.</p></div><div class="people"><article class="person"><div class="initial">FR</div><h3>Francis Ríos</h3><small>INGENIERÍA DE SOFTWARE · UDLA</small><p>Desarrollador de software orientado a soluciones funcionales, ordenadas y escalables.</p></article><article class="person"><div class="initial">KP</div><h3>Kevin Pedrera</h3><small>DESARROLLO DE SOFTWARE · ITSQMET</small><p>Desarrollador web con experiencia en soluciones digitales para el entorno educativo.</p></article></div></div></section>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: var(--paper);
+      color: var(--ink);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      line-height: 1.65;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
 
-<section id="agenda" class="booking wrap">
-  <div class="booking-info">
-    <p class="tag">Primera conversación</p>
-    <h2 class="heading">Hagamos espacio<br>para su idea.</h2>
-    <p>Seleccione el tipo de proyecto, la fecha y cómo prefiere conversar.</p>
-    <div class="steps">
-      <div class="step"><span class="step-num">01</span> Cuéntenos qué necesita</div>
-      <div class="step"><span class="step-num">02</span> Elegimos fecha y modalidad</div>
-      <div class="step"><span class="step-num">03</span> Le confirmamos la cita</div>
-    </div>
-  </div>
+    .wrap {
+      width: min(1180px, calc(100% - 44px));
+      margin: auto;
+    }
 
-  <form id="bookingForm">
-    <!-- Loading Overlay -->
-    <div class="form-overlay" id="loadingOverlay">
-      <div class="spinner"></div>
-      <p>Registrando su cita...</p>
-    </div>
+    a { color: inherit; text-decoration: none; transition: all 0.25s ease; }
 
-    <!-- Success State -->
-    <div class="form-success" id="successState">
-      <div class="success-icon">
-        <svg viewBox="0 0 24 24"><polyline points="5 13 10 18 19 6"/></svg>
-      </div>
-      <h3>¡Cita registrada!</h3>
-      <p>Hemos recibido su solicitud exitosamente. Nos pondremos en contacto con usted pronto para confirmar.</p>
-      <button type="button" onclick="resetForm()">Agendar otra cita</button>
-    </div>
+    /* ====== TIPOGRAFÍA NOBLE ====== */
+    h1, h2, h3, .serif {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+    }
+    .cinzel {
+      font-family: 'Cinzel', serif;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+    .eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .eyebrow::before, .eyebrow::after {
+      content: '';
+      display: inline-block;
+      width: 22px;
+      height: 1px;
+      background: var(--accent);
+      opacity: 0.7;
+    }
 
-    <!-- Error Banner -->
-    <div class="form-error" id="errorBanner"></div>
+    /* ====== NAVEGACIÓN EN LAVANDA CON TOQUES MORADOS ====== */
+    .nav-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(246, 242, 247, 0.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+      height: 84px;
+      display: flex;
+      align-items: center;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-logo-svg {
+      width: 46px;
+      height: 46px;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .brand:hover .brand-logo-svg {
+      transform: translateY(-2px) scale(1.04);
+      filter: drop-shadow(0 6px 16px var(--accent-glow));
+    }
+    .brand-text {
+      font-family: 'Cinzel', serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      line-height: 1.1;
+      color: var(--ink);
+    }
+    .brand-text span {
+      display: block;
+      font-size: 0.55rem;
+      color: var(--accent);
+      letter-spacing: 0.28em;
+      font-weight: 700;
+    }
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      font-size: 0.74rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .nav-links a:hover {
+      color: var(--ink);
+    }
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 22px;
+      background: var(--ink);
+      color: #ffffff;
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 14px rgba(45, 26, 50, 0.2);
+    }
+    .nav-cta:hover {
+      background: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px var(--accent-glow);
+    }
 
-    <!-- Form Fields -->
-    <div class="form-row">
-      <label>Nombre<input type="text" name="nombre" id="nombre" placeholder="Su nombre" required></label>
-      <label>Correo<input type="email" name="correo" id="correo" placeholder="nombre@correo.com" required></label>
-    </div>
+    /* ====== HERO: SU MARCA MÁS VISIBLE ====== */
+    .hero-section {
+      min-height: calc(100vh - 84px);
+      display: grid;
+      grid-template-columns: 1.12fr 0.88fr;
+      align-items: center;
+      gap: 60px;
+      padding: 50px 0 90px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 14px;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--accent);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(45, 26, 50, 0.05);
+    }
+    .hero-heading {
+      font-size: clamp(3.2rem, 5.8vw, 5.5rem);
+      line-height: 0.95;
+      font-weight: 300;
+      color: var(--ink);
+      margin-bottom: 26px;
+    }
+    .hero-heading em {
+      font-style: italic;
+      color: var(--accent);
+      font-weight: 400;
+    }
+    .hero-intro {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 480px;
+      line-height: 1.75;
+      margin-bottom: 36px;
+      font-weight: 300;
+    }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      flex-wrap: wrap;
+    }
+    .btn-main {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      padding: 17px 32px;
+      background: var(--ink);
+      color: #ffffff;
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(45, 26, 50, 0.22);
+      transition: all 0.35s ease;
+    }
+    .btn-main:hover {
+      transform: translateY(-3px);
+      background: var(--accent);
+      box-shadow: 0 12px 28px var(--accent-glow);
+    }
+    .btn-text-link {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 4px;
+      font-weight: 700;
+    }
+    .btn-text-link:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+    .hero-visual {
+      position: relative;
+      aspect-ratio: 1 / 1.06;
+      background: var(--ink);
+      border: 1px solid #4a3350;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(45, 26, 50, 0.25);
+    }
+    .hero-visual img.hero-bg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.85;
+      transition: transform 12s ease;
+    }
+    .hero-visual:hover img.hero-bg {
+      transform: scale(1.06);
+    }
+    .hero-watermark {
+      position: absolute;
+      width: 44%;
+      opacity: 0.65;
+      filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.6));
+      animation: floatMark 7s ease-in-out infinite;
+    }
+    .visual-corner-tag {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent-soft);
+      border-top: 1px solid rgba(240, 173, 146, 0.3);
+      padding-top: 10px;
+    }
 
-    <label>¿Qué necesita?
-      <select name="necesidad" id="necesidad" required>
-        <option value="" disabled selected>Seleccione una opción</option>
-        <option value="Página web">Página web</option>
-        <option value="Programa o sistema web">Programa o sistema web</option>
-        <option value="Consultoría">Consultoría</option>
-      </select>
-    </label>
+    /* ====== FRANJA DE MÉTRICAS (1+ AÑO) ====== */
+    .specs-strip {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: #ffffff;
+      padding: 42px 0;
+    }
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+    }
+    .spec-card {
+      border-left: 2px solid var(--accent);
+      padding-left: 22px;
+    }
+    .spec-num {
+      font-family: 'Cinzel', serif;
+      font-size: 2.3rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .spec-num span { color: var(--accent); }
+    .spec-title {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .spec-desc {
+      font-size: 0.75rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
 
-    <label>Modalidad
-      <select name="modalidad" id="modalidad" required onchange="toggleFields()">
-        <option value="Virtual">Virtual</option>
-        <option value="Presencial">Presencial</option>
-      </select>
-    </label>
+    /* ====== MANIFIESTO ====== */
+    .manifesto-section {
+      padding: 110px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .manifesto-grid {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 70px;
+      align-items: center;
+    }
+    .manifesto-quote {
+      font-size: clamp(2.1rem, 3.5vw, 3.2rem);
+      line-height: 1.2;
+      font-weight: 300;
+      color: var(--ink);
+    }
+    .manifesto-quote span {
+      color: var(--accent);
+      font-style: italic;
+    }
+    .manifesto-body p {
+      color: var(--muted);
+      font-size: 0.98rem;
+      line-height: 1.85;
+      margin-bottom: 20px;
+    }
+    .manifesto-author {
+      margin-top: 28px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+    }
+    .manifesto-author span {
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      font-weight: 700;
+    }
 
-    <label id="notificacionField">¿Dónde desea recibir el enlace?
-      <select name="notificacion" id="notificacion" required onchange="toggleFields()">
-        <option value="Correo">Correo Electrónico</option>
-        <option value="WhatsApp">WhatsApp</option>
-      </select>
-    </label>
+    /* ====== SERVICIOS ====== */
+    .services-section {
+      padding: 110px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .section-head {
+      margin-bottom: 55px;
+      max-width: 680px;
+    }
+    .section-title {
+      font-size: clamp(2.5rem, 4.4vw, 4.2rem);
+      line-height: 1.02;
+      margin-top: 8px;
+      color: var(--ink);
+    }
+    .services-accordion {
+      display: flex;
+      flex-direction: column;
+    }
+    .service-row {
+      display: grid;
+      grid-template-columns: 70px 1.2fr 1.5fr 50px;
+      align-items: center;
+      gap: 30px;
+      padding: 36px 0;
+      border-top: 1px solid var(--line);
+      transition: all 0.35s ease;
+      cursor: pointer;
+    }
+    .service-row:last-child {
+      border-bottom: 1px solid var(--line);
+    }
+    .service-row:hover {
+      padding-left: 20px;
+      padding-right: 20px;
+      background: #ffffff;
+      border-color: var(--accent);
+      box-shadow: 0 4px 18px rgba(45, 26, 50, 0.05);
+    }
+    .service-index {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      font-weight: 700;
+    }
+    .service-title h3 {
+      font-size: 1.8rem;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .service-title span {
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .service-details p {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .service-specs {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+    .service-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      color: var(--ink);
+      font-weight: 600;
+    }
+    .service-arrow {
+      font-size: 1.4rem;
+      color: var(--accent);
+      text-align: right;
+      transition: transform 0.3s ease;
+    }
+    .service-row:hover .service-arrow {
+      transform: translateX(6px);
+    }
 
-    <label id="whatsappField" style="display:none;">Número de WhatsApp
-      <input type="tel" name="whatsapp" id="whatsapp" placeholder="Ej: +593987654321">
-    </label>
+    /* ====== PORTAFOLIO: CONTRASTE EN MORADO NOCHE ====== */
+    .portfolio-section {
+      padding: 120px 0;
+      background: var(--ink);
+      color: #ffffff;
+      border-bottom: 1px solid #4a3350;
+    }
+    .portfolio-section .section-title {
+      color: #ffffff;
+    }
+    .portfolio-section .eyebrow {
+      color: var(--accent-soft);
+    }
+    .portfolio-section .eyebrow::before,
+    .portfolio-section .eyebrow::after {
+      background: var(--accent-soft);
+    }
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 50px;
+    }
+    .portfolio-card {
+      background: #392440;
+      border: 1px solid #54395e;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+    }
+    .portfolio-card:hover {
+      transform: translateY(-9px);
+      border-color: var(--accent-soft);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+    }
+    .portfolio-art {
+      height: 230px;
+      position: relative;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      font: 55px Georgia, serif;
+      color: var(--ink);
+    }
+    .card-art-1 { background: #dfad9b; }
+    .card-art-2 { background: #9b7bab; color: #ffffff; }
+    .card-art-3 { background: #719398; color: #ffffff; }
 
-    <div class="form-row">
-      <label>Fecha preferida
-        <input type="date" name="fechaDia" id="fechaDia" required>
-      </label>
-      <label>Hora preferida
-        <select name="fechaHora" id="fechaHora" required>
-          <option value="" disabled selected>Seleccione una hora</option>
-          <option value="07:00">07:00 AM</option>
-          <option value="08:00">08:00 AM</option>
-          <option value="09:00">09:00 AM</option>
-          <option value="10:00">10:00 AM</option>
-          <option value="11:00">11:00 AM</option>
-          <option value="12:00">12:00 PM</option>
-          <option value="13:00">01:00 PM</option>
-          <option value="14:00">02:00 PM</option>
-          <option value="15:00">03:00 PM</option>
-          <option value="16:00">04:00 PM</option>
-          <option value="17:00">05:00 PM</option>
-          <option value="18:00">06:00 PM</option>
-          <option value="19:00">07:00 PM</option>
-          <option value="20:00">08:00 PM</option>
-        </select>
-      </label>
-    </div>
+    .portfolio-year {
+      position: absolute;
+      top: 16px;
+      left: 18px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: var(--ink);
+      font-weight: 700;
+    }
+    .card-art-2 .portfolio-year, .card-art-3 .portfolio-year { color: #ffffff; }
 
-    <label>Cuéntenos brevemente <span class="optional-tag">(Opcional)</span>
-      <textarea name="mensaje" id="mensaje" rows="3" placeholder="¿Qué le gustaría lograr?"></textarea>
-    </label>
+    .portfolio-content {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .portfolio-tag {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent-soft);
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    .portfolio-content h3 {
+      font-size: 1.7rem;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+    .portfolio-content p {
+      font-size: 0.88rem;
+      color: #d8cde0;
+      line-height: 1.6;
+      margin-bottom: 22px;
+      flex-grow: 1;
+    }
+    .portfolio-link {
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-top: 1px solid #54395e;
+      padding-top: 16px;
+      font-weight: 700;
+    }
+    .portfolio-link:hover {
+      color: var(--accent-soft);
+    }
 
-    <button class="button" type="submit" id="submitBtn">Solicitar cita →</button>
-    <p class="form-note">Responderemos para confirmar disponibilidad antes de reservar.</p>
-  </form>
-</section>
-</main>
+    /* ====== EL MÉTODO EN 4 ETAPAS ====== */
+    .process-section {
+      padding: 110px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+      margin-top: 50px;
+    }
+    .process-card {
+      padding: 32px 22px;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-top: 3px solid var(--ink);
+      box-shadow: 0 4px 14px rgba(45, 26, 50, 0.04);
+      transition: border-color 0.3s;
+    }
+    .process-card:hover {
+      border-top-color: var(--accent);
+    }
+    .process-phase {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      color: var(--accent);
+      margin-bottom: 12px;
+      display: block;
+      font-weight: 700;
+    }
+    .process-card h4 {
+      font-size: 1.35rem;
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+    .process-card p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
 
-<script>
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx3swhCUwmoGW7Y2pspvjthqHaJfaNAVkwnjmqjNvAUclLPd76K7VDahIpsI3e5JanH2w/exec';
+    /* ====== SECCIÓN DE FUNDADORES EN MALVA ELEGANTE ====== */
+    .founders-section {
+      padding: 120px 0;
+      background: var(--paper-mauve);
+      border-bottom: 1px solid var(--line);
+    }
+    .founders-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 34px;
+      margin-top: 50px;
+    }
+    .founder-box {
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(45, 26, 50, 0.1);
+      border-top: 3px solid var(--accent);
+      box-shadow: 0 8px 24px rgba(45, 26, 50, 0.06);
+      transition: all 0.35s ease;
+    }
+    .founder-box:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 36px rgba(45, 26, 50, 0.14);
+      background: #ffffff;
+    }
+    .founder-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 24px;
+    }
+    .founder-avatar {
+      width: 66px;
+      height: 66px;
+      border-radius: 50%;
+      background: var(--ink);
+      display: grid;
+      place-items: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(45, 26, 50, 0.25);
+    }
+    .founder-num {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .founder-box h3 {
+      font-size: 2.1rem;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .founder-role {
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+      font-weight: 700;
+      display: block;
+    }
+    .founder-bio {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 24px;
+    }
+    .founder-meta {
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink);
+      font-weight: 700;
+    }
 
-  // ========== INICIALIZACIÓN ==========
-  (function init() {
-    // Establecer fecha mínima = hoy
-    const today = new Date();
-    const yyyy = today.getFullYear();
-    const mm = String(today.getMonth() + 1).padStart(2, '0');
-    const dd = String(today.getDate()).padStart(2, '0');
-    document.getElementById('fechaDia').setAttribute('min', `${yyyy}-${mm}-${dd}`);
+    /* ===================================================
+       SECCIÓN DE RESERVA POR FASES (ESTUDIO JURÍDICO)
+       FONDO MORADO PROFUNDO (#2d1a32) DE ALTA CONVERSIÓN
+       =================================================== */
+    .booking-section {
+      padding: 120px 0;
+      background: var(--ink);
+      color: #ffffff;
+      border-bottom: 1px solid #4a3350;
+      position: relative;
+    }
+    .booking-container {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 65px;
+      align-items: start;
+    }
+    .booking-sidebar h2 {
+      font-size: clamp(2.7rem, 4.4vw, 4rem);
+      line-height: 1.02;
+      margin-bottom: 20px;
+      color: #ffffff;
+    }
+    .booking-sidebar p {
+      color: #d8cde0;
+      font-size: 0.96rem;
+      line-height: 1.8;
+      margin-bottom: 30px;
+    }
+    .booking-sidebar .eyebrow {
+      color: var(--accent-soft);
+    }
+    .booking-sidebar .eyebrow::before,
+    .booking-sidebar .eyebrow::after {
+      background: var(--accent-soft);
+    }
+    .confidential-seal {
+      padding: 22px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(240, 173, 146, 0.25);
+      border-left: 3px solid var(--accent-soft);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+      border-radius: 2px;
+      margin-top: 32px;
+    }
+    .confidential-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.74rem;
+      letter-spacing: 0.16em;
+      color: var(--accent-soft);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .confidential-desc {
+      font-size: 0.78rem;
+      color: #d8cde0;
+      line-height: 1.6;
+    }
+
+    /* Tarjeta Principal del Stepper en Blanco Puro con Alto Contraste */
+    .intake-stepper-box {
+      background: #ffffff;
+      border: 1px solid #4a3350;
+      padding: 40px;
+      position: relative;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+    }
     
-    toggleFields();
-  })();
+    /* Barra de Progreso de Fases */
+    .stepper-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      margin-bottom: 36px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--line);
+    }
+    .step-indicator {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      position: relative;
+      z-index: 2;
+    }
+    .step-circle {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid var(--line-strong);
+      background: #ffffff;
+      color: var(--muted);
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      display: grid;
+      place-items: center;
+      transition: all 0.35s ease;
+    }
+    .step-indicator.active .step-circle {
+      border-color: var(--ink);
+      background: var(--ink);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(45, 26, 50, 0.25);
+    }
+    .step-indicator.completed .step-circle {
+      border-color: var(--accent);
+      color: #ffffff;
+      background: var(--accent);
+    }
+    .step-name {
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+    }
+    .step-indicator.active .step-name {
+      color: var(--ink);
+      font-weight: 700;
+    }
+    .stepper-line-bar {
+      position: absolute;
+      top: 19px;
+      left: 36px;
+      right: 36px;
+      height: 2px;
+      background: var(--line);
+      z-index: 1;
+    }
+    .stepper-line-progress {
+      height: 100%;
+      width: 0%;
+      background: var(--accent);
+      transition: width 0.4s ease;
+    }
 
-  // ========== TOGGLE CAMPOS CONDICIONALES ==========
-  function toggleFields() {
-    const modalidad = document.getElementById('modalidad').value;
-    const notif = document.getElementById('notificacion').value;
-    const notifField = document.getElementById('notificacionField');
-    const notifInput = document.getElementById('notificacion');
-    const waField = document.getElementById('whatsappField');
-    const waInput = document.getElementById('whatsapp');
+    /* Contenido de Fases */
+    .step-pane {
+      display: none;
+      animation: fadeIn 0.4s ease forwards;
+    }
+    .step-pane.active {
+      display: block;
+    }
+    .step-pane-header {
+      margin-bottom: 24px;
+    }
+    .step-pane-header h3 {
+      font-size: 1.85rem;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .step-pane-header p {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
 
-    if (modalidad === 'Virtual') {
-      notifField.style.display = '';
-      notifInput.required = true;
-      if (notif === 'WhatsApp') {
-        waField.style.display = '';
-        waInput.required = true;
-      } else {
-        waField.style.display = 'none';
-        waInput.required = false;
-        waInput.value = '';
+    /* Tarjetas de Selección */
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+    .selectable-card {
+      padding: 16px 18px;
+      background: #ffffff;
+      border: 1px solid var(--line-strong);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .selectable-card:hover {
+      border-color: var(--ink);
+      box-shadow: 0 4px 12px rgba(45, 26, 50, 0.08);
+    }
+    .selectable-card.selected {
+      border-color: var(--ink);
+      border-width: 2px;
+      background: #ffffff;
+      box-shadow: 0 6px 16px rgba(45, 26, 50, 0.12);
+    }
+    .card-radio-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .card-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .card-check {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 1px solid var(--line-strong);
+      display: grid;
+      place-items: center;
+    }
+    .selectable-card.selected .card-check {
+      border-color: var(--ink);
+      background: var(--ink);
+    }
+    .card-check::after {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: #ffffff;
+      border-radius: 50%;
+      display: none;
+    }
+    .selectable-card.selected .card-check::after {
+      display: block;
+    }
+    .card-desc {
+      font-size: 0.74rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    /* Campos de Formulario con Bordes Nítidos */
+    .field-group {
+      margin-bottom: 20px;
+    }
+    .field-label {
+      display: block;
+      font-size: 0.72rem;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .field-input, .field-select, .field-textarea {
+      width: 100%;
+      padding: 13px 16px;
+      background: #ffffff;
+      border: 1px solid var(--line-strong);
+      color: var(--ink);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.92rem;
+      transition: all 0.3s ease;
+      outline: none;
+    }
+    .field-input:focus, .field-select:focus, .field-textarea:focus {
+      border-color: var(--ink);
+      box-shadow: 0 0 10px rgba(45, 26, 50, 0.12);
+    }
+    .field-select {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%232d1a32' fill='none' stroke-width='2'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 18px center;
+    }
+    .input-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* Horarios (Chips) */
+    .hours-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .hour-chip {
+      padding: 11px 6px;
+      text-align: center;
+      background: #ffffff;
+      border: 1px solid var(--line-strong);
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      color: var(--ink);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-weight: 600;
+    }
+    .hour-chip:hover {
+      border-color: var(--ink);
+      background: var(--paper);
+    }
+    .hour-chip.selected {
+      border-color: var(--ink);
+      background: var(--ink);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(45, 26, 50, 0.2);
+    }
+
+    /* Resumen (Fase 4 - Dossier) */
+    .summary-dossier {
+      background: #ffffff;
+      border: 2px solid var(--accent);
+      padding: 24px;
+      margin-bottom: 26px;
+      position: relative;
+      box-shadow: 0 6px 18px rgba(45, 26, 50, 0.06);
+    }
+    .dossier-watermark {
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.24em;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 2px 8px;
+      font-weight: 700;
+    }
+    .dossier-title {
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      color: var(--ink);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .dossier-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .dossier-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .dossier-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .dossier-val {
+      font-size: 0.9rem;
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    /* Navegación del Stepper */
+    .stepper-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+    }
+    .btn-step-prev {
+      background: transparent;
+      border: 1px solid var(--line-strong);
+      color: var(--muted);
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      padding: 12px 24px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-weight: 700;
+    }
+    .btn-step-prev:hover {
+      border-color: var(--ink);
+      color: var(--ink);
+      background: #ffffff;
+    }
+    .btn-step-next {
+      background: var(--ink);
+      border: none;
+      color: #ffffff;
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      padding: 14px 28px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: auto;
+      box-shadow: 0 4px 14px rgba(45, 26, 50, 0.2);
+    }
+    .btn-step-next:hover {
+      background: var(--accent);
+      box-shadow: 0 6px 18px var(--accent-glow);
+      transform: translateY(-2px);
+    }
+
+    /* Overlays de Carga & Éxito */
+    .loading-veil {
+      position: absolute;
+      inset: 0;
+      background: rgba(237, 229, 238, 0.96);
+      backdrop-filter: blur(6px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+      z-index: 20;
+    }
+    .loading-veil.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .pagani-spinner {
+      width: 48px;
+      height: 48px;
+      border: 3px solid var(--line);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.9s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+    }
+    .loading-veil p {
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.22em;
+      color: var(--ink);
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .success-veil {
+      position: absolute;
+      inset: 0;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 45px 30px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+      z-index: 25;
+    }
+    .success-veil.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .success-symbol {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: var(--ink);
+      display: grid;
+      place-items: center;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 22px rgba(45, 26, 50, 0.25);
+    }
+    .success-symbol svg {
+      width: 32px;
+      height: 32px;
+      stroke: #ffffff;
+      stroke-width: 2.5;
+      fill: none;
+    }
+    .success-veil h3 {
+      font-size: 2.4rem;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+    .success-veil p {
+      max-width: 440px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    .booking-error-banner {
+      padding: 14px 18px;
+      background: #fde8e8;
+      border-left: 3px solid var(--danger);
+      font-size: 0.8rem;
+      color: #991b1b;
+      margin-bottom: 20px;
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+    .booking-error-banner.active {
+      display: block;
+    }
+
+    /* ====== PREGUNTAS FRECUENTES ====== */
+    .faq-section {
+      padding: 110px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 26px;
+      margin-top: 50px;
+    }
+    .faq-card {
+      padding: 30px;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--ink);
+      box-shadow: 0 4px 16px rgba(45, 26, 50, 0.04);
+    }
+    .faq-card h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+    .faq-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ====== FOOTER EN MORADO PROFUNDO ====== */
+    footer {
+      padding: 60px 0;
+      background: var(--ink);
+      color: var(--paper);
+      font-size: 0.75rem;
+      border-top: 1px solid #4a3350;
+    }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .footer-legal {
+      display: flex;
+      gap: 24px;
+      font-weight: 600;
+    }
+    .footer-legal a {
+      color: var(--paper);
+    }
+    .footer-legal a:hover {
+      color: var(--accent-soft);
+    }
+
+    /* ====== ANIMACIONES ====== */
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes floatMark {
+      0%, 100% { transform: translateY(0px) rotate(-1deg); }
+      50% { transform: translateY(14px) rotate(2deg); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ====== RESPONSIVE ====== */
+    @media (max-width: 900px) {
+      .hero-section { grid-template-columns: 1fr; gap: 40px; }
+      .manifesto-grid { grid-template-columns: 1fr; gap: 40px; }
+      .specs-grid { grid-template-columns: 1fr 1fr; }
+      .service-row { grid-template-columns: 50px 1fr; gap: 15px; }
+      .service-details, .service-arrow { grid-column: 2; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .process-grid { grid-template-columns: 1fr 1fr; }
+      .founders-grid { grid-template-columns: 1fr; }
+      .booking-container { grid-template-columns: 1fr; gap: 45px; }
+      .faq-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .hours-grid { grid-template-columns: repeat(3, 1fr); }
+      .options-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .specs-grid { grid-template-columns: 1fr; }
+      .process-grid { grid-template-columns: 1fr; }
+      .input-grid-2 { grid-template-columns: 1fr; }
+      .hours-grid { grid-template-columns: repeat(2, 1fr); }
+      .intake-stepper-box { padding: 24px 18px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVEGACIÓN -->
+  <header class="nav-bar">
+    <div class="wrap nav-inner">
+      <a href="#inicio" class="brand">
+        <!-- Logo Vértice Vectorial SVG con Identidad de Marca -->
+        <img src="public/vertice-logo.svg" alt="Emblema Vértice" class="brand-logo-svg">
+        <div class="brand-text">
+          VÉRTICE
+          <span>ATELIER DIGITAL</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#manifiesto">Filosofía</a>
+        <a href="#servicios">Ingeniería</a>
+        <a href="#obras">Obras</a>
+        <a href="#metodo">El Método</a>
+        <a href="#fundadores">Fundadores</a>
+      </nav>
+
+      <a href="#reserva" class="nav-cta">Agendar Sesión ↗</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION: SU MARCA MÁS VISIBLE -->
+    <section id="inicio" class="wrap hero-section">
+      <div>
+        <div class="hero-badge">
+          Estudio digital · Ecuador · 1+ Año
+        </div>
+        <h1 class="hero-heading">
+          Su operación más clara.<br>
+          <em>Su marca</em> más visible.
+        </h1>
+        <p class="hero-intro">
+          Creamos sistemas y sitios web que convierten procesos dispersos en experiencias simples, distinguidas y memorables para su equipo y sus clientes.
+        </p>
+        <div class="hero-actions">
+          <a href="#reserva" class="btn-main">Conversemos sobre su proyecto →</a>
+          <a href="#obras" class="btn-text-link">Conozca nuestro trabajo ↓</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <img class="hero-bg" src="public/vertice-hero.png" alt="Composición tecnológica y estratégica Vértice">
+        <!-- Marca de agua con el nuevo logo en Morado y Terracota -->
+        <img class="hero-watermark" src="public/vertice-logo.svg" alt="">
+        <div class="visual-corner-tag">
+          <span>DESARROLLO + ESTRATEGIA</span>
+          <span>EST. 2025 · 1+ AÑO</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FRANJA DE MÉTRICAS & TRAYECTORIA (1 AÑO) -->
+    <section class="specs-strip">
+      <div class="wrap specs-grid">
+        <div class="spec-card">
+          <div class="spec-num">1+ <span>Año</span></div>
+          <div class="spec-title">De Trayectoria</div>
+          <div class="spec-desc">Desarrollando soluciones funcionales para instituciones y empresas.</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-num">14+ <span>Obras</span></div>
+          <div class="spec-title">Entregadas con Éxito</div>
+          <div class="spec-desc">Sistemas de control académico, portales corporativos y jurídicos.</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-num">&lt; 0.6s</div>
+          <div class="spec-title">Velocidad de Carga</div>
+          <div class="spec-desc">Optimización artesanal sin librerías pesadas ni plantillas genéricas.</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-num">100%</div>
+          <div class="spec-title">Código Propietario</div>
+          <div class="spec-desc">Plataformas independientes diseñadas para perdurar y escalar.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MANIFIESTO: FILOSOFÍA HORACIO PAGANI -->
+    <section id="manifiesto" class="wrap manifesto-section">
+      <div class="manifesto-grid">
+        <div>
+          <div class="eyebrow">Nuestro Punto de Partida</div>
+          <h2 class="manifesto-quote">
+            "No se trata de tener más tecnología. Se trata de contar con la <span>herramienta adecuada</span>, bien diseñada y fácil de usar."
+          </h2>
+        </div>
+        <div class="manifesto-body">
+          <p>
+            Inspirados en la premisa renacentista que guía a los grandes constructores de hiperdeportivos italianos —donde el rigor del código se funde con la armonía de la belleza—, creemos que el software debe ser tan confiable como placentero de usar.
+          </p>
+          <p>
+            En <strong>Vértice Digital</strong> cada pantalla, base de datos y flujo de trabajo es esculpido con dedicación artesanal, adaptándose con exactitud milimétrica a las necesidades de su organización y la tranquilidad de sus clientes.
+          </p>
+          <div class="manifesto-author">
+            <img src="public/vertice-logo.svg" alt="" style="width:36px;height:36px;">
+            <span>VÉRTICE · INGENIERÍA DIGITAL CON PROPÓSITO</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICIOS / DISCIPLINES -->
+    <section id="servicios" class="wrap services-section">
+      <div class="section-head">
+        <div class="eyebrow">Lo que hacemos</div>
+        <h2 class="section-title">Diseño digital con propósito.</h2>
+      </div>
+
+      <div class="services-accordion">
+        <article class="service-row" onclick="selectServiceInBooking('Sistemas Web a Medida')">
+          <span class="service-index">01</span>
+          <div class="service-title">
+            <h3>Sistemas Web</h3>
+            <span>PLATAFORMAS A MEDIDA</span>
+          </div>
+          <div class="service-details">
+            <p>Plataformas robustas para organizar procesos críticos, centralizar información importante y evitar pérdidas de tiempo en tareas manuales.</p>
+            <div class="service-specs">
+              <span class="service-tag">Arquitectura Limpia</span>
+              <span class="service-tag">Bases de Datos Seguras</span>
+              <span class="service-tag">Paneles Intuitivos</span>
+            </div>
+          </div>
+          <div class="service-arrow">↗</div>
+        </article>
+
+        <article class="service-row" onclick="selectServiceInBooking('Presencia e Identidad Institucional')">
+          <span class="service-index">02</span>
+          <div class="service-title">
+            <h3>Presencia Institucional</h3>
+            <span>SITIOS CLAROS Y ADMINISTRABLES</span>
+          </div>
+          <div class="service-details">
+            <p>Sitios web distinguidos, rápidos y administrables para mostrar una organización con seriedad, captar clientes y generar autoridad inmediata.</p>
+            <div class="service-specs">
+              <span class="service-tag">Tipografía Editorial</span>
+              <span class="service-tag">Conversión Sutil</span>
+              <span class="service-tag">SEO Técnico</span>
+            </div>
+          </div>
+          <div class="service-arrow">↗</div>
+        </article>
+
+        <article class="service-row" onclick="selectServiceInBooking('Estrategia y Consultoría Digital')">
+          <span class="service-index">03</span>
+          <div class="service-title">
+            <h3>Estrategia Digital</h3>
+            <span>UNA PROPUESTA CONCRETA</span>
+          </div>
+          <div class="service-details">
+            <p>Una hoja de ruta clara para que su marca comunique mejor, llegue a las personas correctas y aproveche al máximo sus herramientas digitales.</p>
+            <div class="service-specs">
+              <span class="service-tag">Diagnóstico Profundo</span>
+              <span class="service-tag">Automatización</span>
+              <span class="service-tag">Asesoría 1 a 1</span>
+            </div>
+          </div>
+          <div class="service-arrow">↗</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- OBRAS SELECTAS: CONTRASTE EN MORADO NOCHE -->
+    <section id="obras" class="portfolio-section">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Experiencia Seleccionada</div>
+          <h2 class="section-title">Proyectos que puede explorar.</h2>
+        </div>
+
+        <div class="portfolio-grid">
+          <article class="portfolio-card">
+            <div class="portfolio-art card-art-1">
+              <span class="portfolio-year">OP. 01</span>
+              <div>{ }</div>
+            </div>
+            <div class="portfolio-content">
+              <div class="portfolio-tag">Gestión Académica</div>
+              <h3>Control Estudiantil</h3>
+              <p>Registro, consulta y seguimiento académico. Una experiencia pensada para ordenar procesos sin demoras ni inconsistencias.</p>
+              <a href="#reserva" class="portfolio-link">Ver Demostración ↗</a>
+            </div>
+          </article>
+
+          <article class="portfolio-card">
+            <div class="portfolio-art card-art-2">
+              <span class="portfolio-year">OP. 02</span>
+              <div>09:30</div>
+            </div>
+            <div class="portfolio-content">
+              <div class="portfolio-tag">Operación Institucional</div>
+              <h3>Sistema de Horarios</h3>
+              <p>Información clara para coordinación, docentes y estudiantes, resolviendo cruces de aulas y materias automáticamente.</p>
+              <a href="#reserva" class="portfolio-link">Solicitar Acceso ↗</a>
+            </div>
+          </article>
+
+          <article class="portfolio-card">
+            <div class="portfolio-art card-art-3">
+              <span class="portfolio-year">OP. 03</span>
+              <div>§</div>
+            </div>
+            <div class="portfolio-content">
+              <div class="portfolio-tag">Presencia Profesional</div>
+              <h3>Estudio Jurídico</h3>
+              <p>Una web institucional sobria que genera confianza inmediata y guía al visitante hacia una consulta confidencial.</p>
+              <a href="#reserva" class="portfolio-link">Ver Caso ↗</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- EL MÉTODO VÉRTICE: 4 ETAPAS -->
+    <section id="metodo" class="wrap process-section">
+      <div class="section-head">
+        <div class="eyebrow">Metodología de Trabajo</div>
+        <h2 class="section-title">El camino hacia la excelencia técnica.</h2>
+      </div>
+
+      <div class="process-grid">
+        <div class="process-card">
+          <span class="process-phase">FASE I</span>
+          <h4>Inmersión & Diagnóstico</h4>
+          <p>Analizamos las metas profundas de su empresa, identificamos cuellos de botella y definimos la arquitectura idónea sin improvisaciones.</p>
+        </div>
+
+        <div class="process-card">
+          <span class="process-phase">FASE II</span>
+          <h4>Prototipado Editorial</h4>
+          <p>Modelamos la experiencia de usuario con tipografía noble, jerarquía clara y flujos limpios antes de redactar la primera línea de código.</p>
+        </div>
+
+        <div class="process-card">
+          <span class="process-phase">FASE III</span>
+          <h4>Ingeniería Artesanal</h4>
+          <p>Construimos el sistema bajo estándares de código limpio, pruebas rigurosas, optimización de velocidad extrema y bases de datos seguras.</p>
+        </div>
+
+        <div class="process-card">
+          <span class="process-phase">FASE IV</span>
+          <h4>Entrega & Acompañamiento</h4>
+          <p>Despliegue controlado, capacitación a su equipo y acompañamiento cercano durante todo el primer año para garantizar estabilidad absoluta.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN DE FUNDADORES EN MALVA ELEGANTE -->
+    <section id="fundadores" class="founders-section">
+      <div class="wrap">
+        <div class="section-head" style="text-align: center; margin: 0 auto 50px;">
+          <div class="eyebrow">Detrás de Vértice</div>
+          <h2 class="section-title">Un sueño compartido:<br><em>crear soluciones</em> que abran camino.</h2>
+          <p style="color: var(--muted); margin-top: 14px; font-size: 1.05rem;">Dos desarrolladores que creen que las buenas ideas merecen una ejecución clara, cercana y bien hecha.</p>
+        </div>
+
+        <div class="founders-grid">
+          <article class="founder-box">
+            <div class="founder-header">
+              <div class="founder-avatar">FR</div>
+              <span class="founder-num">01 · INGENIERÍA</span>
+            </div>
+            <span class="founder-role">Ingeniería de Software · UDLA</span>
+            <h3>Francis Ríos</h3>
+            <p class="founder-bio">
+              Desarrollador de software orientado a convertir necesidades complejas en soluciones funcionales, ordenadas y escalables. Su foco está en la arquitectura limpia y la fiabilidad de las bases de datos.
+            </p>
+            <div class="founder-meta">
+              Desarrollo · Arquitectura · Lógica
+            </div>
+          </article>
+
+          <article class="founder-box">
+            <div class="founder-header">
+              <div class="founder-avatar">KP</div>
+              <span class="founder-num">02 · EXPERIENCIA</span>
+            </div>
+            <span class="founder-role">Desarrollo de Software · ITSQMET</span>
+            <h3>Kevin Pedrera</h3>
+            <p class="founder-bio">
+              Desarrollador web con experiencia práctica creando y administrando soluciones digitales para el entorno corporativo y educativo. Especializado en interfaces intuitivas y experiencia de usuario.
+            </p>
+            <div class="founder-meta">
+              Web · Instituciones · Experiencia Digital
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         SECCIÓN DE RESERVA POR FASES (ESTUDIO JURÍDICO)
+         CAJA DE ALTO CONTRASTE EN LAVANDA #ede5ee
+         =================================================== -->
+    <section id="reserva" class="booking-section">
+      <div class="wrap booking-container">
+        
+        <!-- Lateral Informativo -->
+        <div class="booking-sidebar">
+          <div class="eyebrow">Primera Conversación</div>
+          <h2>Hagamos espacio para su idea.</h2>
+          <p>
+            Elija el tipo de proyecto y cómo prefiere conversar. La primera orientación es remota o presencial según disponibilidad.
+          </p>
+
+          <div class="confidential-seal">
+            <div class="confidential-title">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              CONSULTA CONFIDENCIAL
+            </div>
+            <p class="confidential-desc">
+              Toda la información compartida durante esta primera conversación está resguardada bajo estricta reserva profesional. Sin compromisos forzados.
+            </p>
+          </div>
+        </div>
+
+        <!-- Formulario por Fases (Intake Stepper) en Caja #ede5ee -->
+        <div class="intake-stepper-box">
+          
+          <!-- Indicador Visual de 4 Fases con alto contraste -->
+          <div class="stepper-header">
+            <div class="stepper-line-bar">
+              <div class="stepper-line-progress" id="stepperProgressBar"></div>
+            </div>
+
+            <div class="step-indicator active" id="indicator1">
+              <div class="step-circle">01</div>
+              <span class="step-name">Materia</span>
+            </div>
+
+            <div class="step-indicator" id="indicator2">
+              <div class="step-circle">02</div>
+              <span class="step-name">Agenda</span>
+            </div>
+
+            <div class="step-indicator" id="indicator3">
+              <div class="step-circle">03</div>
+              <span class="step-name">Perfil</span>
+            </div>
+
+            <div class="step-indicator" id="indicator4">
+              <div class="step-circle">04</div>
+              <span class="step-name">Confirmar</span>
+            </div>
+          </div>
+
+          <!-- Banner de Errores -->
+          <div class="booking-error-banner" id="bookingErrorBanner"></div>
+
+          <!-- FORMULARIO MULTI-FASE -->
+          <form id="multiPhaseBookingForm">
+
+            <!-- FASE 1: MATERIA & MODALIDAD -->
+            <div class="step-pane active" id="stepPane1">
+              <div class="step-pane-header">
+                <h3>Fase 1 · Naturaleza del Proyecto</h3>
+                <p>Seleccione el tipo de desarrollo y la modalidad de la reunión.</p>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label">¿Qué necesita?</label>
+                <div class="options-grid">
+                  <div class="selectable-card selected" onclick="selectServiceCard(this, 'Página Web')">
+                    <div class="card-radio-header">
+                      <span class="card-title">Página Web</span>
+                      <div class="card-check"></div>
+                    </div>
+                    <p class="card-desc">Sitio institucional claro, veloz y de alta presencia para su marca.</p>
+                  </div>
+
+                  <div class="selectable-card" onclick="selectServiceCard(this, 'Programa o Sistema Web')">
+                    <div class="card-radio-header">
+                      <span class="card-title">Sistema Web</span>
+                      <div class="card-check"></div>
+                    </div>
+                    <p class="card-desc">Plataforma a medida para organizar procesos y centralizar datos.</p>
+                  </div>
+
+                  <div class="selectable-card" onclick="selectServiceCard(this, 'Consultoría')">
+                    <div class="card-radio-header">
+                      <span class="card-title">Consultoría</span>
+                      <div class="card-check"></div>
+                    </div>
+                    <p class="card-desc">Aún no tengo claro qué necesito y busco orientación estratégica.</p>
+                  </div>
+
+                  <div class="selectable-card" onclick="selectServiceCard(this, 'Otro Proyecto Especializado')">
+                    <div class="card-radio-header">
+                      <span class="card-title">Otro Proyecto</span>
+                      <div class="card-check"></div>
+                    </div>
+                    <p class="card-desc">Integraciones específicas, APIs o modernización tecnológica.</p>
+                  </div>
+                </div>
+                <input type="hidden" name="necesidad" id="inputNecesidad" value="Página Web">
+              </div>
+
+              <div class="field-group">
+                <label class="field-label">Modalidad</label>
+                <select class="field-select" name="modalidad" id="selectModalidad" onchange="handleModalidadChange()">
+                  <option value="Virtual">Virtual (Videollamada Google Meet)</option>
+                  <option value="Presencial">Presencial (Quito, Ecuador)</option>
+                </select>
+              </div>
+
+              <div class="stepper-nav">
+                <button type="button" class="btn-step-next" onclick="goToStep(2)">Continuar a la Agenda →</button>
+              </div>
+            </div>
+
+            <!-- FASE 2: AGENDA & CANAL DE RECEPCIÓN -->
+            <div class="step-pane" id="stepPane2">
+              <div class="step-pane-header">
+                <h3>Fase 2 · Fecha, Horario & Enlace</h3>
+                <p>Elija el bloque de disponibilidad y cómo desea recibir el enlace de la reunión.</p>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label">Fecha Preferida</label>
+                <input type="date" class="field-input" id="inputFechaDia" onchange="validateSelectedDate()">
+              </div>
+
+              <div class="field-group">
+                <label class="field-label">Hora Preferida (De 07:00 AM a 08:00 PM)</label>
+                <div class="hours-grid" id="hoursGrid">
+                  <div class="hour-chip" onclick="selectHourChip(this, '07:00')">07:00 AM</div>
+                  <div class="hour-chip" onclick="selectHourChip(this, '08:00')">08:00 AM</div>
+                  <div class="hour-chip" onclick="selectHourChip(this, '09:00')">09:00 AM</div>
+                  <div class="hour-chip" onclick="selectHourChip(this, '10:00')">10:00 AM</div>
+                  <div class="hour-chip" onclick="selectHourChip(this, '11:00')">11:00 AM</div>
+                  <div class="hour-chip" onclick="selectHourChip(this, '12:00')">12:00 PM</div>
+                  <div class="hour-chip" onclick="selectHourChip(this, '13:00')">01:00 PM</div>
+                  <div class="hour-chip" onclick="selectHourChip(this, '14:00')">02:00 PM</div>
+                  <div class="hour-chip" onclick="selectHourChip(this, '15:00')">03:00 PM</div>
+                  <div class="hour-chip" onclick="selectHourChip(this, '16:00')">04:00 PM</div>
+                  <div class="hour-chip" onclick="selectHourChip(this, '17:00')">05:00 PM</div>
+                  <div class="hour-chip" onclick="selectHourChip(this, '18:00')">06:00 PM</div>
+                  <div class="hour-chip" onclick="selectHourChip(this, '19:00')">07:00 PM</div>
+                  <div class="hour-chip" onclick="selectHourChip(this, '20:00')">08:00 PM</div>
+                </div>
+                <input type="hidden" name="fechaHora" id="inputFechaHora" value="">
+              </div>
+
+              <div class="field-group" id="groupCanalEnlace">
+                <label class="field-label">¿Dónde desea recibir el enlace de la videollamada?</label>
+                <select class="field-select" name="notificacion" id="selectNotificacion" onchange="handleNotificacionChange()">
+                  <option value="Correo">Correo Electrónico</option>
+                  <option value="WhatsApp">WhatsApp</option>
+                </select>
+              </div>
+
+              <div class="field-group" id="groupWhatsapp" style="display: none;">
+                <label class="field-label">Número de WhatsApp</label>
+                <input type="tel" class="field-input" id="inputWhatsapp" placeholder="Ej: +593 98 765 4321">
+              </div>
+
+              <div class="stepper-nav">
+                <button type="button" class="btn-step-prev" onclick="goToStep(1)">← Volver</button>
+                <button type="button" class="btn-step-next" onclick="goToStep(3)">Continuar a Datos de Contacto →</button>
+              </div>
+            </div>
+
+            <!-- FASE 3: PERFIL & CONTEXTO PREVIO -->
+            <div class="step-pane" id="stepPane3">
+              <div class="step-pane-header">
+                <h3>Fase 3 · Datos de Contacto</h3>
+                <p>Identificación del solicitante para acreditar la cita.</p>
+              </div>
+
+              <div class="input-grid-2">
+                <div class="field-group">
+                  <label class="field-label">Nombre Completo *</label>
+                  <input type="text" class="field-input" id="inputNombre" placeholder="Su nombre" required>
+                </div>
+
+                <div class="field-group">
+                  <label class="field-label">Correo Electrónico *</label>
+                  <input type="email" class="field-input" id="inputCorreo" placeholder="nombre@correo.com" required>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label">Cuéntenos brevemente <span style="font-weight: 400; opacity: 0.6;">(Opcional)</span></label>
+                <textarea class="field-textarea" id="inputMensaje" rows="3" placeholder="¿Qué le gustaría lograr con su proyecto?"></textarea>
+              </div>
+
+              <div class="stepper-nav">
+                <button type="button" class="btn-step-prev" onclick="goToStep(2)">← Volver</button>
+                <button type="button" class="btn-step-next" onclick="goToStep(4)">Revisar Resumen de Cita →</button>
+              </div>
+            </div>
+
+            <!-- FASE 4: DOSSIER DE CONFIRMACIÓN -->
+            <div class="step-pane" id="stepPane4">
+              <div class="step-pane-header">
+                <h3>Fase 4 · Ficha Técnica de la Solicitud</h3>
+                <p>Revise sus datos antes de solicitar la cita oficial.</p>
+              </div>
+
+              <div class="summary-dossier">
+                <div class="dossier-watermark">CONFIDENCIAL</div>
+                <div class="dossier-title">Resumen de Audiencia Preliminar</div>
+                <div class="dossier-grid">
+                  <div class="dossier-item">
+                    <span class="dossier-label">Materia / Necesidad</span>
+                    <span class="dossier-val" id="sumMateria">-</span>
+                  </div>
+                  <div class="dossier-item">
+                    <span class="dossier-label">Modalidad</span>
+                    <span class="dossier-val" id="sumModalidad">-</span>
+                  </div>
+                  <div class="dossier-item">
+                    <span class="dossier-label">Fecha Agendada</span>
+                    <span class="dossier-val" id="sumFecha">-</span>
+                  </div>
+                  <div class="dossier-item">
+                    <span class="dossier-label">Horario Exacto</span>
+                    <span class="dossier-val" id="sumHora" style="color: var(--accent); font-weight: 700;">-</span>
+                  </div>
+                  <div class="dossier-item">
+                    <span class="dossier-label">Solicitante</span>
+                    <span class="dossier-val" id="sumNombre">-</span>
+                  </div>
+                  <div class="dossier-item">
+                    <span class="dossier-label">Canal de Enlace</span>
+                    <span class="dossier-val" id="sumCanal">-</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="stepper-nav">
+                <button type="button" class="btn-step-prev" onclick="goToStep(3)">← Modificar Datos</button>
+                <button type="submit" class="btn-step-next" id="btnFinalSubmit">
+                  Solicitar cita →
+                </button>
+              </div>
+            </div>
+
+          </form>
+
+          <!-- Overlay de Procesamiento -->
+          <div class="loading-veil" id="loadingVeil">
+            <div class="pagani-spinner"></div>
+            <p>Creando cita...</p>
+          </div>
+
+          <!-- Overlay de Éxito -->
+          <div class="success-veil" id="successVeil">
+            <div class="success-symbol">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+            <div class="eyebrow" style="margin-bottom: 6px;">¡Cita Solicitada con Éxito!</div>
+            <h3>Sesión Registrada</h3>
+            <p id="successMessageText">
+              Hemos recibido sus datos en nuestro sistema. Nos pondremos en contacto con usted pronto.
+            </p>
+            <button type="button" class="btn-main" onclick="resetMultiPhaseBooking()">Agendar Otra Cita</button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PREGUNTAS FRECUENTES -->
+    <section class="wrap faq-section">
+      <div class="section-head">
+        <div class="eyebrow">Dudas Habituales</div>
+        <h2 class="section-title">Claridad desde el primer contacto.</h2>
+      </div>
+
+      <div class="faq-grid">
+        <div class="faq-card">
+          <h4>¿Tiene algún costo la primera conversación?</h4>
+          <p>No. La sesión inicial de orientación es una consulta técnica sin honorarios para evaluar su caso, entender su requerimiento y determinar si somos el equipo idóneo para su meta.</p>
+        </div>
+
+        <div class="faq-card">
+          <h4>¿Cuánto tiempo toma desarrollar una plataforma a medida?</h4>
+          <p>Un sitio web corporativo de alta gama suele tomar entre 2 y 4 semanas. Sistemas web más complejos o de gestión institucional se estructuran en entregables por etapas de 4 a 8 semanas.</p>
+        </div>
+
+        <div class="faq-card">
+          <h4>¿Qué ocurre tras agendar en el calendario?</h4>
+          <p>El sistema bloquea inmediatamente su horario en nuestra agenda privada, evitando cualquier duplicidad. Le contactaremos para validar el enlace y preparar el material previo de la reunión.</p>
+        </div>
+
+        <div class="faq-card">
+          <h4>¿Ofrecen soporte continuo tras la entrega?</h4>
+          <p>Absolutamente. Toda obra entregada por Vértice Digital incluye garantía de código, mantenimiento preventivo y soporte dedicado durante el primer año de operaciones.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER EN MORADO PROFUNDO -->
+  <footer>
+    <div class="wrap footer-inner">
+      <div class="footer-brand">
+        <img src="public/vertice-logo.svg" alt="Vértice" style="width:34px;height:34px;">
+        <div class="brand-text" style="color:#ffffff;">
+          VÉRTICE
+          <span style="color:var(--accent-soft);">ATELIER DE SOFTWARE</span>
+        </div>
+      </div>
+
+      <div style="color:#d8cde0;">
+        © 2025–2026 Vértice Digital · Quito, Ecuador · Arte e Scienza.
+      </div>
+
+      <div class="footer-legal">
+        <a href="#inicio">Volver Arriba ↑</a>
+        <a href="admin.html" target="_blank" style="color:var(--accent-soft);">Panel de Citas ↗</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT DE CONTROL MULTI-FASE & GESTIÓN DE CITAS -->
+  <script>
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx3swhCUwmoGW7Y2pspvjthqHaJfaNAVkwnjmqjNvAUclLPd76K7VDahIpsI3e5JanH2w/exec';
+
+    let currentStep = 1;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0');
+      const dd = String(today.getDate()).padStart(2, '0');
+      document.getElementById('inputFechaDia').setAttribute('min', `${yyyy}-${mm}-${dd}`);
+
+      const defaultHourChip = document.querySelector('.hour-chip:nth-child(4)');
+      if (defaultHourChip) {
+        selectHourChip(defaultHourChip, '10:00');
       }
-    } else {
-      notifField.style.display = 'none';
-      notifInput.required = false;
-      waField.style.display = 'none';
-      waInput.required = false;
-      waInput.value = '';
-    }
-  }
 
-  // ========== MOSTRAR/OCULTAR ERROR ==========
-  function showError(message) {
-    const banner = document.getElementById('errorBanner');
-    banner.textContent = message;
-    banner.classList.add('active');
-    // Scroll suave hacia el error
-    banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
+      updateStepperUI();
+    });
 
-  function hideError() {
-    document.getElementById('errorBanner').classList.remove('active');
-  }
-
-  // ========== VALIDACIÓN FRONTEND ==========
-  function validateForm() {
-    hideError();
-    const fechaDia = document.getElementById('fechaDia').value;
-    const fechaHora = document.getElementById('fechaHora').value;
-    const correo = document.getElementById('correo').value;
-
-    // 1. Validar que la fecha no sea pasada
-    if (!fechaDia) {
-      showError('Por favor seleccione una fecha para la cita.');
-      return false;
+    function selectServiceCard(cardElement, serviceName) {
+      document.querySelectorAll('.selectable-card').forEach(c => c.classList.remove('selected'));
+      cardElement.classList.add('selected');
+      document.getElementById('inputNecesidad').value = serviceName;
     }
 
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    const selectedDate = new Date(fechaDia + 'T00:00:00');
-
-    if (selectedDate < today) {
-      showError('No es posible agendar una cita en una fecha pasada. Por favor seleccione una fecha a partir de hoy.');
-      return false;
+    function selectServiceInBooking(serviceName) {
+      document.getElementById('inputNecesidad').value = serviceName;
+      document.querySelectorAll('.selectable-card').forEach(card => {
+        const title = card.querySelector('.card-title').innerText;
+        if (title.toLowerCase().includes(serviceName.toLowerCase().slice(0, 8))) {
+          card.classList.add('selected');
+        } else {
+          card.classList.remove('selected');
+        }
+      });
+      window.location.href = '#reserva';
     }
 
-    // 2. Validar que si la fecha es hoy, la hora no sea pasada
-    const now = new Date();
-    if (selectedDate.getTime() === today.getTime() && fechaHora) {
-      const [h] = fechaHora.split(':').map(Number);
-      if (h <= now.getHours()) {
-        showError('Esa hora ya pasó el día de hoy. Por favor seleccione una hora posterior.');
+    function handleModalidadChange() {
+      const modalidad = document.getElementById('selectModalidad').value;
+      const canalGroup = document.getElementById('groupCanalEnlace');
+      const waGroup = document.getElementById('groupWhatsapp');
+
+      if (modalidad === 'Presencial') {
+        canalGroup.style.display = 'none';
+        waGroup.style.display = 'none';
+      } else {
+        canalGroup.style.display = 'block';
+        handleNotificacionChange();
+      }
+    }
+
+    function handleNotificacionChange() {
+      const notif = document.getElementById('selectNotificacion').value;
+      const modalidad = document.getElementById('selectModalidad').value;
+      const waGroup = document.getElementById('groupWhatsapp');
+
+      if (modalidad === 'Virtual' && notif === 'WhatsApp') {
+        waGroup.style.display = 'block';
+      } else {
+        waGroup.style.display = 'none';
+      }
+    }
+
+    function selectHourChip(chipElement, hourStr) {
+      document.querySelectorAll('.hour-chip').forEach(c => c.classList.remove('selected'));
+      chipElement.classList.add('selected');
+      document.getElementById('inputFechaHora').value = hourStr;
+    }
+
+    function validateSelectedDate() {
+      clearBookingError();
+      const dateVal = document.getElementById('inputFechaDia').value;
+      if (!dateVal) return false;
+
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const selected = new Date(dateVal + 'T00:00:00');
+
+      if (selected < today) {
+        showBookingError('No es posible agendar citas en fechas pasadas.');
         return false;
       }
+      return true;
     }
 
-    // 3. Validar hora seleccionada
-    if (!fechaHora) {
-      showError('Por favor seleccione una hora para la cita.');
-      return false;
+    function showBookingError(msg) {
+      const banner = document.getElementById('bookingErrorBanner');
+      banner.textContent = msg;
+      banner.classList.add('active');
+      banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 
-    // 4. Validar formato de correo
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(correo)) {
-      showError('Por favor ingrese un correo electrónico válido.');
-      return false;
+    function clearBookingError() {
+      const banner = document.getElementById('bookingErrorBanner');
+      banner.classList.remove('active');
     }
 
-    // 5. Validar WhatsApp si es necesario
-    const modalidad = document.getElementById('modalidad').value;
-    const notif = document.getElementById('notificacion').value;
-    const whatsapp = document.getElementById('whatsapp').value;
-    if (modalidad === 'Virtual' && notif === 'WhatsApp' && !whatsapp.trim()) {
-      showError('Por favor ingrese su número de WhatsApp para enviarle el enlace de la reunión.');
-      return false;
-    }
+    function goToStep(step) {
+      clearBookingError();
 
-    return true;
-  }
+      if (step === 2 && currentStep === 1) {
+        // Ok
+      } else if (step === 3 && currentStep === 2) {
+        const fechaDia = document.getElementById('inputFechaDia').value;
+        const fechaHora = document.getElementById('inputFechaHora').value;
+        const modalidad = document.getElementById('selectModalidad').value;
+        const notif = document.getElementById('selectNotificacion').value;
+        const wa = document.getElementById('inputWhatsapp').value;
 
-  // ========== RESET FORMULARIO ==========
-  function resetForm() {
-    document.getElementById('bookingForm').reset();
-    document.getElementById('successState').classList.remove('active');
-    hideError();
-    toggleFields();
-    // Restaurar fecha mínima
-    const today = new Date();
-    const yyyy = today.getFullYear();
-    const mm = String(today.getMonth() + 1).padStart(2, '0');
-    const dd = String(today.getDate()).padStart(2, '0');
-    document.getElementById('fechaDia').setAttribute('min', `${yyyy}-${mm}-${dd}`);
-  }
+        if (!fechaDia) {
+          showBookingError('Por favor seleccione una fecha para la reunión.');
+          return;
+        }
+        if (!validateSelectedDate()) return;
 
-  // ========== ENVÍO DEL FORMULARIO ==========
-  document.getElementById('bookingForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
+        if (!fechaHora) {
+          showBookingError('Por favor elija un horario disponible.');
+          return;
+        }
 
-    // Validar antes de enviar
-    if (!validateForm()) return;
+        const today = new Date();
+        const selected = new Date(fechaDia + 'T00:00:00');
+        today.setHours(0, 0, 0, 0);
+        if (selected.getTime() === today.getTime()) {
+          const nowHour = new Date().getHours();
+          const chosenHour = parseInt(fechaHora.split(':')[0], 10);
+          if (chosenHour <= nowHour) {
+            showBookingError('Ese horario ya no está disponible el día de hoy. Elija una hora posterior o fecha siguiente.');
+            return;
+          }
+        }
 
-    const btn = document.getElementById('submitBtn');
-    const overlay = document.getElementById('loadingOverlay');
-    const success = document.getElementById('successState');
+        if (modalidad === 'Virtual' && notif === 'WhatsApp' && !wa.trim()) {
+          showBookingError('Por favor ingrese su número de WhatsApp para enviarle el enlace.');
+          return;
+        }
+      } else if (step === 4 && currentStep === 3) {
+        const nombre = document.getElementById('inputNombre').value.trim();
+        const correo = document.getElementById('inputCorreo').value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    // Mostrar loading
-    btn.disabled = true;
-    overlay.classList.add('active');
+        if (!nombre) {
+          showBookingError('Por favor ingrese su nombre y apellido completo.');
+          return;
+        }
+        if (!correo || !emailRegex.test(correo)) {
+          showBookingError('Por favor ingrese una dirección de correo electrónico válida.');
+          return;
+        }
 
-    // Construir datos
-    const fechaCompleta = document.getElementById('fechaDia').value + ' ' + document.getElementById('fechaHora').value;
-    
-    const data = {
-      nombre: document.getElementById('nombre').value,
-      correo: document.getElementById('correo').value,
-      fecha: fechaCompleta,
-      necesidad: document.getElementById('necesidad').value,
-      modalidad: document.getElementById('modalidad').value,
-      notificacion: document.getElementById('modalidad').value === 'Virtual' ? document.getElementById('notificacion').value : '',
-      whatsapp: (document.getElementById('modalidad').value === 'Virtual' && document.getElementById('notificacion').value === 'WhatsApp') ? document.getElementById('whatsapp').value : '',
-      mensaje: document.getElementById('mensaje').value || ''
-    };
-
-    try {
-      const res = await fetch(SCRIPT_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(data)
-      });
-
-      const response = await res.json();
-
-      // Ocultar loading
-      overlay.classList.remove('active');
-
-      if (response.error) {
-        showError(response.error);
-        btn.disabled = false;
-      } else {
-        // Mostrar éxito con animación
-        success.classList.add('active');
+        populateSummaryDossier();
       }
-    } catch (error) {
-      overlay.classList.remove('active');
-      showError('Hubo un error de conexión. Por favor intente más tarde.');
-      btn.disabled = false;
-      console.error('Error:', error);
+
+      currentStep = step;
+      updateStepperUI();
     }
-  });
-</script>
-</body></html>
+
+    function updateStepperUI() {
+      for (let i = 1; i <= 4; i++) {
+        const pane = document.getElementById(`stepPane${i}`);
+        const ind = document.getElementById(`indicator${i}`);
+        if (i === currentStep) {
+          pane.classList.add('active');
+          ind.classList.add('active');
+          ind.classList.remove('completed');
+        } else if (i < currentStep) {
+          pane.classList.remove('active');
+          ind.classList.remove('active');
+          ind.classList.add('completed');
+        } else {
+          pane.classList.remove('active');
+          ind.classList.remove('active');
+          ind.classList.remove('completed');
+        }
+      }
+
+      const progressPercent = ((currentStep - 1) / 3) * 100;
+      document.getElementById('stepperProgressBar').style.width = `${progressPercent}%`;
+    }
+
+    function populateSummaryDossier() {
+      document.getElementById('sumMateria').innerText = document.getElementById('inputNecesidad').value;
+      document.getElementById('sumModalidad').innerText = document.getElementById('selectModalidad').value;
+      
+      const fechaVal = document.getElementById('inputFechaDia').value;
+      document.getElementById('sumFecha').innerText = fechaVal;
+
+      const horaVal = document.getElementById('inputFechaHora').value;
+      document.getElementById('sumHora').innerText = `${horaVal} (Hora Ecuador / GMT-5)`;
+
+      document.getElementById('sumNombre').innerText = document.getElementById('inputNombre').value;
+
+      const modalidad = document.getElementById('selectModalidad').value;
+      if (modalidad === 'Presencial') {
+        document.getElementById('sumCanal').innerText = 'Presencial (Quito, EC)';
+      } else {
+        const canal = document.getElementById('selectNotificacion').value;
+        const wa = document.getElementById('inputWhatsapp').value;
+        document.getElementById('sumCanal').innerText = canal === 'WhatsApp' ? `WhatsApp: ${wa}` : `Correo: ${document.getElementById('inputCorreo').value}`;
+      }
+    }
+
+    document.getElementById('multiPhaseBookingForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      clearBookingError();
+
+      const btn = document.getElementById('btnFinalSubmit');
+      const veil = document.getElementById('loadingVeil');
+      const successVeil = document.getElementById('successVeil');
+
+      btn.disabled = true;
+      veil.classList.add('active');
+
+      const fechaDia = document.getElementById('inputFechaDia').value;
+      const fechaHora = document.getElementById('inputFechaHora').value;
+      const modalidad = document.getElementById('selectModalidad').value;
+      const notificacion = modalidad === 'Virtual' ? document.getElementById('selectNotificacion').value : '';
+      const whatsapp = (modalidad === 'Virtual' && notificacion === 'WhatsApp') ? document.getElementById('inputWhatsapp').value : '';
+
+      const payload = {
+        nombre: document.getElementById('inputNombre').value.trim(),
+        correo: document.getElementById('inputCorreo').value.trim(),
+        fecha: fechaDia,
+        hora: fechaHora,
+        necesidad: document.getElementById('inputNecesidad').value,
+        modalidad: modalidad,
+        notificacion: notificacion,
+        whatsapp: whatsapp,
+        mensaje: document.getElementById('inputMensaje').value.trim() || ''
+      };
+
+      try {
+        const res = await fetch(SCRIPT_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        });
+
+        const responseData = await res.json();
+        veil.classList.remove('active');
+
+        if (responseData.error) {
+          showBookingError(responseData.error);
+          btn.disabled = false;
+        } else {
+          document.getElementById('successMessageText').innerText = 
+            `Estimado(a) ${payload.nombre}, hemos registrado su solicitud para el ${payload.fecha} a las ${payload.hora} bajo modalidad ${payload.modalidad}. Nos pondremos en contacto pronto a través de su ${payload.notificacion === 'WhatsApp' ? 'WhatsApp' : 'correo electrónico'}.`;
+          successVeil.classList.add('active');
+        }
+      } catch (err) {
+        veil.classList.remove('active');
+        showBookingError('Ocurrió un error al procesar la reserva. Por favor intente nuevamente.');
+        btn.disabled = false;
+        console.error('Error:', err);
+      }
+    });
+
+    function resetMultiPhaseBooking() {
+      document.getElementById('multiPhaseBookingForm').reset();
+      document.getElementById('successVeil').classList.remove('active');
+      clearBookingError();
+      currentStep = 1;
+      updateStepperUI();
+      handleModalidadChange();
+      document.getElementById('btnFinalSubmit').disabled = false;
+    }
+  </script>
+
+</body>
+</html>

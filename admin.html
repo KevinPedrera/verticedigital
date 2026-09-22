@@ -3,103 +3,896 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Panel de Administración - Citas Vértice</title>
+  <title>Vértice Digital · Panel Administrativo de Citas</title>
+  <link rel="icon" type="image/svg+xml" href="public/favicon.svg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
-    :root { --ink: #2d1a32; --paper: #f6f2f7; --accent: #d5644f; --muted: #6d6171; }
-    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Arial, sans-serif; padding: 40px 20px; }
-    .wrap { max-width: 1120px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-    h1 { margin-top: 0; font-family: Georgia, serif; }
-    table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 14px; }
-    th, td { text-align: left; padding: 12px; border-bottom: 1px solid #ddd2de; }
-    th { background: var(--ink); color: white; font-weight: bold; }
-    tr:hover { background: #f9f9f9; }
-    .status { font-weight: bold; padding: 4px 8px; border-radius: 4px; font-size: 12px; }
-    .btn-reload { padding: 10px 16px; background: var(--accent); color: white; border: none; cursor: pointer; border-radius: 4px; font-weight: bold; }
-    .btn-reload:hover { opacity: 0.9; }
-    .loading { text-align: center; padding: 40px; color: var(--muted); }
+    :root {
+      --ink: #2d1a32;
+      --ink-dark: #211225;
+      --paper: #f6f2f7;
+      --paper-pure: #ffffff;
+      --paper-subtle: #ede5ee;
+      --paper-mauve: #e9dce9;
+      
+      --accent: #d5644f;
+      --accent-soft: #f0ad92;
+      --accent-glow: rgba(213, 100, 79, 0.28);
+
+      --muted: #6d6171;
+      --line: #ddd2de;
+      --line-strong: #cdbfce;
+
+      --success: #2e7d4f;
+      --danger: #b83d31;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      padding: 30px 20px;
+      min-height: 100vh;
+    }
+
+    .wrap {
+      max-width: 1320px;
+      margin: auto;
+    }
+
+    /* ====== LOGIN GATE ====== */
+    #loginGate {
+      position: fixed;
+      inset: 0;
+      background: rgba(45, 26, 50, 0.75);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .login-box {
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--accent);
+      box-shadow: 0 24px 60px rgba(45, 26, 50, 0.35);
+      padding: 46px 38px;
+      width: min(440px, 92vw);
+      text-align: center;
+      position: relative;
+    }
+    .login-logo {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 16px;
+    }
+    .login-box h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.3rem;
+      color: var(--ink);
+      margin-bottom: 2px;
+    }
+    .login-subtitle {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      margin-bottom: 28px;
+      display: block;
+    }
+    .login-field {
+      margin-bottom: 18px;
+      text-align: left;
+    }
+    .login-label {
+      display: block;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .login-input {
+      width: 100%;
+      padding: 12px 14px;
+      background: var(--paper);
+      border: 1px solid var(--line-strong);
+      color: var(--ink);
+      font-size: 0.92rem;
+      outline: none;
+      transition: all 0.3s;
+    }
+    .login-input:focus {
+      border-color: var(--ink);
+      background: #ffffff;
+      box-shadow: 0 0 10px rgba(45, 26, 50, 0.12);
+    }
+    .btn-login {
+      width: 100%;
+      padding: 14px;
+      background: var(--ink);
+      color: #ffffff;
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      font-weight: 700;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: all 0.3s;
+    }
+    .btn-login:hover {
+      background: var(--accent);
+      box-shadow: 0 6px 20px var(--accent-glow);
+    }
+    .login-error {
+      color: var(--danger);
+      font-size: 0.78rem;
+      margin-top: 14px;
+      display: none;
+      font-weight: 600;
+    }
+    .login-hint {
+      font-size: 0.68rem;
+      color: var(--muted);
+      margin-top: 20px;
+      border-top: 1px solid var(--line);
+      padding-top: 14px;
+    }
+
+    /* ====== HEADER DEL DASHBOARD ====== */
+    .admin-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .brand-area {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .brand-logo {
+      width: 44px;
+      height: 44px;
+    }
+    .brand-text h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.15rem;
+      letter-spacing: 0.16em;
+      color: var(--ink);
+      font-weight: 700;
+    }
+    .brand-text p {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn-action {
+      background: #ffffff;
+      border: 1px solid var(--line-strong);
+      color: var(--ink);
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      padding: 10px 18px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+    }
+    .btn-action:hover {
+      border-color: var(--ink);
+      background: var(--paper-subtle);
+    }
+    .btn-primary {
+      background: var(--ink);
+      color: #ffffff;
+      border: 1px solid var(--ink);
+      box-shadow: 0 4px 12px rgba(45, 26, 50, 0.2);
+    }
+    .btn-primary:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+      box-shadow: 0 6px 18px var(--accent-glow);
+    }
+    .btn-logout {
+      background: transparent;
+      border: 1px solid var(--line-strong);
+      color: var(--muted);
+    }
+    .btn-logout:hover {
+      border-color: var(--danger);
+      color: var(--danger);
+      background: #ffffff;
+    }
+
+    /* ====== MÉTRICAS ====== */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-bottom: 30px;
+    }
+    .metric-card {
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--ink);
+      padding: 22px;
+      box-shadow: 0 4px 16px rgba(45, 26, 50, 0.04);
+      transition: border-left-color 0.3s;
+    }
+    .metric-card:hover {
+      border-left-color: var(--accent);
+    }
+    .metric-val {
+      font-family: 'Cinzel', serif;
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .metric-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    /* ====== TABLA DE CITAS ====== */
+    .table-wrapper {
+      background: #ffffff;
+      border: 1px solid var(--line);
+      box-shadow: 0 8px 30px rgba(45, 26, 50, 0.05);
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      text-align: left;
+    }
+    th {
+      background: var(--paper-subtle);
+      padding: 16px 14px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink);
+      border-bottom: 1px solid var(--line);
+      font-weight: 700;
+    }
+    td {
+      padding: 15px 14px;
+      border-bottom: 1px solid var(--line);
+      color: var(--ink);
+      vertical-align: middle;
+    }
+    tr:hover td {
+      background: var(--paper);
+    }
+    .client-name {
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .date-badge {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 8px;
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      border-radius: 2px;
+    }
+    .badge-virtual {
+      background: rgba(45, 26, 50, 0.1);
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+    .badge-presencial {
+      background: rgba(46, 125, 79, 0.12);
+      color: var(--success);
+      border: 1px solid rgba(46, 125, 79, 0.3);
+    }
+    .btn-delete-row {
+      background: transparent;
+      border: 1px solid rgba(184, 61, 49, 0.35);
+      color: var(--danger);
+      padding: 6px 12px;
+      font-size: 0.68rem;
+      cursor: pointer;
+      transition: all 0.25s;
+      font-weight: 700;
+    }
+    .btn-delete-row:hover {
+      background: var(--danger);
+      color: #ffffff;
+    }
+
+    /* ====== MODAL: NUEVA CITA MANUAL ====== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(45, 26, 50, 0.7);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .modal-card {
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--ink);
+      box-shadow: 0 20px 60px rgba(45, 26, 50, 0.35);
+      padding: 36px;
+      width: min(600px, 94vw);
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+    }
+    .modal-header h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.85rem;
+      color: var(--ink);
+    }
+    .btn-close-modal {
+      background: transparent;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--muted);
+    }
+    .btn-close-modal:hover { color: var(--ink); }
+
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .f-group {
+      margin-bottom: 16px;
+    }
+    .f-label {
+      display: block;
+      font-size: 0.68rem;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .f-input, .f-select, .f-textarea {
+      width: 100%;
+      padding: 10px 12px;
+      background: var(--paper);
+      border: 1px solid var(--line-strong);
+      color: var(--ink);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      outline: none;
+    }
+    .f-input:focus, .f-select:focus, .f-textarea:focus {
+      border-color: var(--ink);
+      background: #ffffff;
+    }
+
+    .loading-status {
+      padding: 50px;
+      text-align: center;
+      color: var(--ink);
+      font-family: 'Cinzel', serif;
+      letter-spacing: 0.18em;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    @media (max-width: 840px) {
+      .metrics-grid { grid-template-columns: 1fr 1fr; }
+      .form-grid-2 { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
+
 <body>
-  <div class="wrap">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-      <h1>Registro de Citas</h1>
-      <button class="btn-reload" onclick="loadCitas()">Actualizar Datos</button>
+
+  <!-- PANTALLA DE LOGIN PRIVADO -->
+  <div id="loginGate">
+    <div class="login-box">
+      <img src="public/vertice-logo.svg" alt="Vértice" class="login-logo">
+      <h2>Vértice Atelier</h2>
+      <span class="login-subtitle">Acceso Administrativo Reservado</span>
+
+      <form id="loginForm" onsubmit="handleLogin(event)">
+        <div class="login-field">
+          <label class="login-label">Usuario</label>
+          <input type="text" id="loginUser" class="login-input" placeholder="admin" required autofocus>
+        </div>
+
+        <div class="login-field">
+          <label class="login-label">Contraseña</label>
+          <input type="password" id="loginPass" class="login-input" placeholder="••••••••" required>
+        </div>
+
+        <button type="submit" class="btn-login" id="btnLoginSubmit">Ingresar al Panel →</button>
+        <div class="login-error" id="loginError">Credenciales incorrectas. Verifique e intente nuevamente.</div>
+      </form>
+
+      <div class="login-hint">
+        Acceso exclusivo para el equipo directivo de Vértice Digital.
+      </div>
     </div>
-    
-    <div id="table-container">
-      <div class="loading" id="loading">Cargando citas...</div>
-      <table id="citas-table" style="display: none;">
+  </div>
+
+  <!-- CONTENIDO DEL DASHBOARD -->
+  <div class="dashboard-wrap" id="dashboardContent" style="display:none;">
+
+    <!-- Barra de Estado / Header -->
+    <header class="admin-header">
+      <div class="brand-area">
+        <img src="public/vertice-logo.svg" alt="Vértice" class="brand-logo">
+        <div class="brand-text">
+          <h1>VÉRTICE DIGITAL · ATELIER</h1>
+          <p>Consola de Gestión de Audiencias</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <span class="user-badge" id="currentUserBadge">Usuario</span>
+        <a href="index.html" class="btn-action">← Ver Sitio Web</a>
+        <button class="btn-action btn-primary" onclick="openNewAppointmentModal()">＋ Nueva Cita Manual</button>
+        <button class="btn-action" onclick="loadCitas()">Sincronizar</button>
+        <button class="btn-action btn-logout" onclick="handleLogout()">Cerrar Sesión</button>
+      </div>
+    </header>
+
+    <!-- Métricas del Estudio -->
+    <section class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-val" id="countTotal">0</div>
+        <div class="metric-label">Total Citas Registradas</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val" id="countVirtual">0</div>
+        <div class="metric-label">Sesiones Virtuales</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val" id="countPresencial">0</div>
+        <div class="metric-label">Reuniones Presenciales</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val" id="countWhatsApp">0</div>
+        <div class="metric-label">Canal WhatsApp Activo</div>
+      </div>
+    </section>
+
+    <!-- Tabla de Audiencias -->
+    <div class="table-wrapper">
+      <div id="loadingBox" class="loading-status">SINCRONIZANDO EXPEDIENTES...</div>
+
+      <table id="citasTable" style="display:none;">
         <thead>
           <tr>
-            <th>Fecha de Registro</th>
-            <th>Nombre</th>
+            <th>Registro</th>
+            <th>Solicitante</th>
             <th>Correo</th>
-            <th>Fecha/Hora Cita</th>
-            <th>Necesidad</th>
+            <th>Fecha & Horario</th>
+            <th>Requerimiento</th>
             <th>Modalidad</th>
-            <th>Notificación</th>
+            <th>Canal</th>
             <th>WhatsApp</th>
-            <th>Mensaje</th>
+            <th>Notas</th>
+            <th style="text-align:center;">Gestión</th>
           </tr>
         </thead>
-        <tbody id="citas-body">
-          <!-- Datos insertados dinámicamente -->
-        </tbody>
+        <tbody id="citasBody"></tbody>
       </table>
+    </div>
+
+  </div>
+
+  <!-- MODAL: REGISTRAR CITA MANUAL -->
+  <div class="modal-overlay" id="newAppointmentModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Registrar Audiencia Manual</h3>
+        <button class="btn-close-modal" onclick="closeNewAppointmentModal()">×</button>
+      </div>
+
+      <form id="manualAppointmentForm" onsubmit="handleManualAppointmentSubmit(event)">
+        <div class="form-grid-2">
+          <div class="f-group">
+            <label class="f-label">Nombre del Solicitante *</label>
+            <input type="text" class="f-input" id="mNombre" required placeholder="Ej: Dra. María Augusta Morales">
+          </div>
+          <div class="f-group">
+            <label class="f-label">Correo Electrónico *</label>
+            <input type="email" class="f-input" id="mCorreo" required placeholder="contacto@empresa.com">
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="f-group">
+            <label class="f-label">Fecha de la Cita *</label>
+            <input type="date" class="f-input" id="mFecha" required>
+          </div>
+          <div class="f-group">
+            <label class="f-label">Horario Exacto *</label>
+            <select class="f-select" id="mHora" required>
+              <option value="07:00">07:00 AM</option>
+              <option value="08:00">08:00 AM</option>
+              <option value="09:00">09:00 AM</option>
+              <option value="10:00" selected>10:00 AM</option>
+              <option value="11:00">11:00 AM</option>
+              <option value="12:00">12:00 PM</option>
+              <option value="13:00">01:00 PM</option>
+              <option value="14:00">02:00 PM</option>
+              <option value="15:00">03:00 PM</option>
+              <option value="16:00">04:00 PM</option>
+              <option value="17:00">05:00 PM</option>
+              <option value="18:00">06:00 PM</option>
+              <option value="19:00">07:00 PM</option>
+              <option value="20:00">08:00 PM</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="f-group">
+            <label class="f-label">Materia / Requerimiento *</label>
+            <select class="f-select" id="mNecesidad">
+              <option value="Página Web">Página Web</option>
+              <option value="Programa o Sistema Web">Programa o Sistema Web</option>
+              <option value="Consultoría">Consultoría</option>
+              <option value="Otro Proyecto Especializado">Otro Proyecto Especializado</option>
+            </select>
+          </div>
+          <div class="f-group">
+            <label class="f-label">Modalidad *</label>
+            <select class="f-select" id="mModalidad">
+              <option value="Virtual">Virtual (Videollamada)</option>
+              <option value="Presencial">Presencial (Quito, Ecuador)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="f-group">
+            <label class="f-label">Canal de Enlace</label>
+            <select class="f-select" id="mNotificacion">
+              <option value="Correo">Correo Electrónico</option>
+              <option value="WhatsApp">WhatsApp</option>
+            </select>
+          </div>
+          <div class="f-group">
+            <label class="f-label">WhatsApp (Opcional)</label>
+            <input type="tel" class="f-input" id="mWhatsapp" placeholder="+593987654321">
+          </div>
+        </div>
+
+        <div class="f-group">
+          <label class="f-label">Notas Internas / Contexto</label>
+          <textarea class="f-textarea" id="mMensaje" rows="2" placeholder="Agregada manualmente desde el panel de control..."></textarea>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:12px; margin-top:20px;">
+          <button type="button" class="btn-action" onclick="closeNewAppointmentModal()">Cancelar</button>
+          <button type="submit" class="btn-action btn-primary" id="btnSubmitManual">Guardar Cita ↗</button>
+        </div>
+      </form>
     </div>
   </div>
 
   <script>
-    // URL DEL GOOGLE APPS SCRIPT WEB APP (Debe ser la misma del index.html)
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbx3swhCUwmoGW7Y2pspvjthqHaJfaNAVkwnjmqjNvAUclLPd76K7VDahIpsI3e5JanH2w/exec';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx3swhCUwmoGW7Y2pspvjthqHaJfaNAVkwnjmqjNvAUclLPd76K7VDahIpsI3e5JanH2w/exec';
 
-    function loadCitas() {
-      if (scriptURL === 'REEMPLAZAR_CON_URL_DE_APPS_SCRIPT') {
-        document.getElementById('loading').innerText = 'Falta configurar la URL del Web App de Google en el código.';
-        return;
+    // ====== CONTROL DE AUTENTICACIÓN & SESIÓN ======
+    function checkAuth() {
+      const isAuth = sessionStorage.getItem('vertice_admin_auth');
+      const user = sessionStorage.getItem('vertice_admin_user') || 'Admin';
+      const role = sessionStorage.getItem('vertice_admin_role') || 'Administrador';
+
+      if (isAuth === 'true') {
+        document.getElementById('loginGate').style.display = 'none';
+        document.getElementById('dashboardContent').style.display = 'block';
+        
+        // Mostrar badge de usuario en el header
+        const userBadge = document.getElementById('adminUserBadge');
+        if (userBadge) {
+          userBadge.innerText = `${user} (${role})`;
+        }
+
+        loadCitas();
+      } else {
+        document.getElementById('loginGate').style.display = 'flex';
+        document.getElementById('dashboardContent').style.display = 'none';
       }
-
-      document.getElementById('loading').style.display = 'block';
-      document.getElementById('citas-table').style.display = 'none';
-      const tbody = document.getElementById('citas-body');
-      tbody.innerHTML = '';
-
-      fetch(scriptURL + '?action=getCitas')
-        .then(res => res.json())
-        .then(data => {
-          document.getElementById('loading').style.display = 'none';
-          document.getElementById('citas-table').style.display = 'table';
-          
-          if(data.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;">No hay citas registradas aún.</td></tr>';
-            return;
-          }
-
-          // Invertimos para ver las más recientes primero
-          data.reverse().forEach(row => {
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-              <td>${new Date(row.timestamp).toLocaleString()}</td>
-              <td><strong>${row.nombre}</strong></td>
-              <td>${row.correo}</td>
-              <td style="color: #d5644f; font-weight: bold;">${new Date(row.fecha).toLocaleString()}</td>
-              <td>${row.necesidad}</td>
-              <td>${row.modalidad}</td>
-              <td>${row.notificacion}</td>
-              <td>${row.whatsapp || '-'}</td>
-              <td><small>${row.mensaje}</small></td>
-            `;
-            tbody.appendChild(tr);
-          });
-        })
-        .catch(err => {
-          document.getElementById('loading').innerText = 'Error al cargar las citas.';
-          console.error(err);
-        });
     }
 
-    // Cargar al inicio
-    loadCitas();
+    async function handleLogin(e) {
+      e.preventDefault();
+      const u = document.getElementById('loginUser').value.trim();
+      const p = document.getElementById('loginPass').value.trim();
+      const err = document.getElementById('loginError');
+      const btn = document.getElementById('btnLoginSubmit');
+
+      btn.disabled = true;
+      btn.innerText = 'Validando credenciales...';
+      err.style.display = 'none';
+
+      try {
+        const res = await fetch(SCRIPT_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({
+            action: 'login',
+            usuario: u,
+            password: p
+          })
+        });
+
+        const resJson = await res.json();
+
+        if (resJson.success) {
+          sessionStorage.setItem('vertice_admin_auth', 'true');
+          sessionStorage.setItem('vertice_admin_user', resJson.user || u);
+          sessionStorage.setItem('vertice_admin_role', resJson.role || 'Administrador');
+          checkAuth();
+        } else {
+          err.innerText = resJson.error || 'Credenciales incorrectas. Verifique e intente de nuevo.';
+          err.style.display = 'block';
+        }
+      } catch (ex) {
+        console.error(ex);
+        err.innerText = 'Error de conexión con el servidor. Intente nuevamente.';
+        err.style.display = 'block';
+      } finally {
+        btn.disabled = false;
+        btn.innerText = 'Ingresar al Panel →';
+      }
+    }
+
+    function handleLogout() {
+      sessionStorage.removeItem('vertice_admin_auth');
+      sessionStorage.removeItem('vertice_admin_user');
+      sessionStorage.removeItem('vertice_admin_role');
+      checkAuth();
+    }
+
+    // ====== CARGA Y GESTIÓN DE CITAS ======
+    let currentCitas = [];
+
+    async function loadCitas() {
+      const loading = document.getElementById('loadingBox');
+      const table = document.getElementById('citasTable');
+      const tbody = document.getElementById('citasBody');
+
+      loading.style.display = 'block';
+      table.style.display = 'none';
+      tbody.innerHTML = '';
+
+      try {
+        const res = await fetch(SCRIPT_URL + '?action=getCitas');
+        const data = await res.json();
+
+        currentCitas = data || [];
+        loading.style.display = 'none';
+        table.style.display = 'table';
+
+        if (currentCitas.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="10" style="text-align:center; padding:40px; color:var(--muted);">No hay citas registradas en la hoja actualmente.</td></tr>';
+          updateMetrics([]);
+          return;
+        }
+
+        renderCitasTable(currentCitas);
+        updateMetrics(currentCitas);
+
+      } catch (err) {
+        loading.innerText = 'Error al sincronizar citas. Verifique la conexión.';
+        console.error(err);
+      }
+    }
+
+    function renderCitasTable(citas) {
+      const tbody = document.getElementById('citasBody');
+      tbody.innerHTML = '';
+
+      // Mostramos las citas más recientes primero
+      const reversed = [...citas].reverse();
+
+      reversed.forEach((row, index) => {
+        const originalIndex = citas.length - 1 - index;
+        const tr = document.createElement('tr');
+        tr.id = `row-${originalIndex}`;
+        const isVirtual = (row.modalidad || '').toLowerCase() === 'virtual';
+        const fechaStr = row.fecha || row.fechacita || '-';
+        const horaStr = row.hora ? ` · ${row.hora}` : '';
+
+        tr.innerHTML = `
+          <td style="font-size:0.75rem; color:var(--muted);">${row.timestamp ? new Date(row.timestamp).toLocaleDateString() : '-'}</td>
+          <td class="client-name">${row.nombre || '-'}</td>
+          <td><a href="mailto:${row.correo}" style="color:var(--ink); text-decoration:underline;">${row.correo || '-'}</a></td>
+          <td class="date-badge">${fechaStr}${horaStr}</td>
+          <td>${row.necesidad || '-'}</td>
+          <td><span class="badge ${isVirtual ? 'badge-virtual' : 'badge-presencial'}">${row.modalidad || '-'}</span></td>
+          <td>${row.notificacion || '-'}</td>
+          <td>${row.whatsapp ? `<a href="https://wa.me/${String(row.whatsapp).replace(/[^0-9]/g, '')}" target="_blank" style="color:var(--accent); font-weight:700;">${row.whatsapp} ↗</a>` : '—'}</td>
+          <td style="font-size:0.75rem; max-width:220px;">${row.mensaje || '<em style="color:#b0a8b5;">Sin notas</em>'}</td>
+          <td style="text-align:center;">
+            <button class="btn-delete-row" onclick="deleteAppointment(${originalIndex}, '${(row.nombre || '').replace(/'/g, "\\'")}', '${row.fecha || row.fechacita || ''}', '${row.hora || ''}', '${row.timestamp || ''}')">
+              Eliminar
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function updateMetrics(citas) {
+      let virtualCount = 0;
+      let presencialCount = 0;
+      let whatsappCount = 0;
+
+      citas.forEach(row => {
+        if ((row.modalidad || '').toLowerCase() === 'virtual') virtualCount++;
+        if ((row.modalidad || '').toLowerCase() === 'presencial') presencialCount++;
+        if ((row.notificacion || '').toLowerCase() === 'whatsapp' || (row.whatsapp && String(row.whatsapp).trim())) whatsappCount++;
+      });
+
+      document.getElementById('countTotal').innerText = citas.length;
+      document.getElementById('countVirtual').innerText = virtualCount;
+      document.getElementById('countPresencial').innerText = presencialCount;
+      document.getElementById('countWhatsApp').innerText = whatsappCount;
+    }
+
+    // ====== ELIMINAR CITA ======
+    async function deleteAppointment(index, clientName, fecha, hora, timestamp) {
+      const timeLabel = hora ? `${fecha} a las ${hora}` : fecha;
+      const confirmDelete = confirm(`¿Está seguro de cancelar y eliminar la cita de "${clientName}" (${timeLabel})?`);
+      if (!confirmDelete) return;
+
+      try {
+        const payload = {
+          action: 'deleteCita',
+          fecha: fecha,
+          hora: hora,
+          timestamp: timestamp,
+          nombre: clientName
+        };
+
+        fetch(SCRIPT_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        }).catch(err => console.log('Delete trigger:', err));
+
+        // Optimistic UI Update
+        currentCitas.splice(index, 1);
+        renderCitasTable(currentCitas);
+        updateMetrics(currentCitas);
+
+      } catch (e) {
+        console.error(e);
+        alert('No se pudo completar la eliminación.');
+      }
+    }
+
+    // ====== MODAL: NUEVA CITA MANUAL ======
+    function openNewAppointmentModal() {
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('mFecha').value = today;
+      document.getElementById('mFecha').setAttribute('min', today);
+      document.getElementById('newAppointmentModal').classList.add('active');
+    }
+
+    function closeNewAppointmentModal() {
+      document.getElementById('newAppointmentModal').classList.remove('active');
+      document.getElementById('manualAppointmentForm').reset();
+    }
+
+    async function handleManualAppointmentSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('btnSubmitManual');
+      btn.disabled = true;
+      btn.innerText = 'Guardando...';
+
+      const modalidad = document.getElementById('mModalidad').value;
+      const notificacion = modalidad === 'Virtual' ? document.getElementById('mNotificacion').value : '';
+      const whatsapp = (modalidad === 'Virtual' && notificacion === 'WhatsApp') ? document.getElementById('mWhatsapp').value.trim() : '';
+
+      const payload = {
+        nombre: document.getElementById('mNombre').value.trim(),
+        correo: document.getElementById('mCorreo').value.trim(),
+        fecha: document.getElementById('mFecha').value,
+        hora: document.getElementById('mHora').value,
+        necesidad: document.getElementById('mNecesidad').value,
+        modalidad: modalidad,
+        notificacion: notificacion,
+        whatsapp: whatsapp,
+        mensaje: document.getElementById('mMensaje').value.trim() || 'Registrada manualmente desde Panel Admin'
+      };
+
+      try {
+        const res = await fetch(SCRIPT_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        });
+        const resJson = await res.json();
+
+        if (resJson.error) {
+          alert('Aviso del servidor: ' + resJson.error);
+        } else {
+          currentCitas.push({
+            timestamp: new Date().toISOString(),
+            ...payload
+          });
+          renderCitasTable(currentCitas);
+          updateMetrics(currentCitas);
+          closeNewAppointmentModal();
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Cita enviada a la hoja de cálculo.');
+        closeNewAppointmentModal();
+        loadCitas();
+      } finally {
+        btn.disabled = false;
+        btn.innerText = 'Guardar Cita ↗';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', checkAuth);
   </script>
+
 </body>
 </html>

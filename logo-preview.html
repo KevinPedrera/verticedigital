@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vértice Digital · Vitrina de Propuestas de Identidad Visual</title>
+  <link rel="icon" type="image/svg+xml" href="public/favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink: #2d1a32;
+      --paper: #f6f2f7;
+      --accent: #d5644f;
+      --muted: #6d6171;
+      --line: #ddd2de;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Montserrat', sans-serif;
+      padding: 50px 20px;
+    }
+    .wrap {
+      max-width: 1200px;
+      margin: auto;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 8px;
+      display: block;
+    }
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.2rem;
+      color: var(--ink);
+      line-height: 1.05;
+      margin-bottom: 12px;
+    }
+    p.lead {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 680px;
+      margin: auto;
+      line-height: 1.6;
+    }
+
+    /* Grid de Propuestas */
+    .proposals-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-bottom: 50px;
+    }
+    .proposal-card {
+      background: #ffffff;
+      border: 1px solid var(--line);
+      box-shadow: 0 10px 30px rgba(45, 26, 50, 0.06);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: all 0.35s ease;
+    }
+    .proposal-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 45px rgba(45, 26, 50, 0.14);
+      border-color: var(--accent);
+    }
+    .preview-canvas {
+      padding: 40px 20px;
+      background: #fbf9fb;
+      display: grid;
+      place-items: center;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+    }
+    .preview-canvas.dark {
+      background: #2d1a32;
+      border-color: #442a4b;
+    }
+    .badge-bg {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      font-size: 0.62rem;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: #ffffff;
+      padding: 3px 8px;
+      border: 1px solid var(--line);
+      font-weight: 700;
+    }
+    .preview-canvas.dark .badge-bg {
+      background: #3e2444;
+      color: #f0ad92;
+      border-color: #55345d;
+    }
+    .logo-img {
+      width: 140px;
+      height: 140px;
+      transition: transform 0.4s ease;
+    }
+    .proposal-card:hover .logo-img {
+      transform: scale(1.08);
+    }
+
+    /* Pequeña muestra en barra de navegación simulada */
+    .nav-simulator {
+      padding: 14px 20px;
+      background: #f6f2f7;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .nav-sim-logo {
+      width: 38px;
+      height: 38px;
+    }
+    .nav-sim-text {
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.1;
+    }
+    .nav-sim-text span {
+      display: block;
+      font-size: 0.52rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+    }
+
+    .proposal-content {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .prop-tag {
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .proposal-content h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+    .proposal-content p {
+      font-size: 0.86rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 22px;
+      flex-grow: 1;
+    }
+    .traits-list {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .trait-badge {
+      font-size: 0.65rem;
+      padding: 4px 10px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      color: var(--ink);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .btn-select {
+      width: 100%;
+      padding: 14px;
+      background: var(--ink);
+      color: #ffffff;
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.16em;
+      font-weight: 700;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .btn-select:hover {
+      background: var(--accent);
+      box-shadow: 0 6px 18px rgba(213, 100, 79, 0.35);
+    }
+    .btn-select.active-choice {
+      background: var(--accent);
+    }
+
+    /* Barra inferior de navegación rápida */
+    .bottom-nav {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid var(--line);
+    }
+    .btn-back-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 26px;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      color: var(--ink);
+      font-size: 0.78rem;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+    }
+    .btn-back-home:hover {
+      border-color: var(--ink);
+    }
+
+    @media (max-width: 900px) {
+      .proposals-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header class="header">
+      <span class="eyebrow">Atelier de Identidad Visual</span>
+      <h1>Propuestas de Emblema para Vértice</h1>
+      <p class="lead">Tres visiones de alta distinción construidas con la paleta de la marca (Morado Real, Terracota y Platino). Elige la que mejor represente la seguridad y el prestigio de tu estudio.</p>
+    </header>
+
+    <div class="proposals-grid">
+      
+      <!-- PROPUESTA 1: EL BLASÓN / ESCUDO ARQUITECTÓNICO -->
+      <article class="proposal-card">
+        <div class="preview-canvas">
+          <span class="badge-bg">Fondo Claro</span>
+          <img src="public/vertice-logo.svg" alt="Propuesta 1" class="logo-img">
+        </div>
+
+        <div class="nav-simulator">
+          <img src="public/vertice-logo.svg" alt="" class="nav-sim-logo">
+          <div class="nav-sim-text">VÉRTICE<span>ATELIER DIGITAL</span></div>
+        </div>
+
+        <div class="proposal-content">
+          <span class="prop-tag">Propuesta 01</span>
+          <h3>El Escudo Institucional</h3>
+          <p>Un blasón heráldico facetado en 3D que proyecta <strong>máxima seguridad, respaldo corporativo y solidez de software</strong>. Inspirado en firmas jurídicas y entidades financieras de primer nivel.</p>
+          
+          <div class="traits-list">
+            <span class="trait-badge">Protección</span>
+            <span class="trait-badge">Autoridad</span>
+            <span class="trait-badge">Escudo 3D</span>
+          </div>
+
+          <button class="btn-select" onclick="chooseProposal(1)">Seleccionar Propuesta 1 ↗</button>
+        </div>
+      </article>
+
+      <!-- PROPUESTA 2: EL MONOGRAMA PARAMÉTRICO / DIAMANTE -->
+      <article class="proposal-card">
+        <div class="preview-canvas">
+          <span class="badge-bg">Fondo Claro</span>
+          <img src="public/vertice-logo-v2.svg" alt="Propuesta 2" class="logo-img">
+        </div>
+
+        <div class="nav-simulator">
+          <img src="public/vertice-logo-v2.svg" alt="" class="nav-sim-logo">
+          <div class="nav-sim-text">VÉRTICE<span>ATELIER DIGITAL</span></div>
+        </div>
+
+        <div class="proposal-content">
+          <span class="prop-tag">Propuesta 02</span>
+          <h3>El Monograma Diamante</h3>
+          <p>Dos cintas entrelazadas con proporciones áureas que forman una <strong>V de precisión relojera y un diamante en la cúspide</strong>. Transmite sofisticación tecnológica, precisión Pagani y fluidez digital.</p>
+          
+          <div class="traits-list">
+            <span class="trait-badge">Elegancia Pura</span>
+            <span class="trait-badge">Horología Pagani</span>
+            <span class="trait-badge">Monograma V</span>
+          </div>
+
+          <button class="btn-select" onclick="chooseProposal(2)">Seleccionar Propuesta 2 ↗</button>
+        </div>
+      </article>
+
+      <!-- PROPUESTA 3: EL PRISMA ARQUITECTÓNICO ISOMÉTRICO -->
+      <article class="proposal-card">
+        <div class="preview-canvas">
+          <span class="badge-bg">Fondo Claro</span>
+          <img src="public/vertice-logo-v3.svg" alt="Propuesta 3" class="logo-img">
+        </div>
+
+        <div class="nav-simulator">
+          <img src="public/vertice-logo-v3.svg" alt="" class="nav-sim-logo">
+          <div class="nav-sim-text">VÉRTICE<span>ATELIER DIGITAL</span></div>
+        </div>
+
+        <div class="proposal-content">
+          <span class="prop-tag">Propuesta 03</span>
+          <h3>El Prisma Arquitectónico</h3>
+          <p>Un monolito isométrico tridimensional biselado en morado y terracota. Simboliza una <strong>estructura indestructible, solidez de ingeniería y modernismo arquitectónico</strong>.</p>
+          
+          <div class="traits-list">
+            <span class="trait-badge">Ingeniería</span>
+            <span class="trait-badge">Isometría 3D</span>
+            <span class="trait-badge">Solidez</span>
+          </div>
+
+          <button class="btn-select" onclick="chooseProposal(3)">Seleccionar Propuesta 3 ↗</button>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="bottom-nav">
+      <a href="index.html" class="btn-back-home">← Volver a la Página Principal (index.html)</a>
+    </div>
+  </div>
+
+  <script>
+    function chooseProposal(num) {
+      // Notificar al usuario y actualizar vista
+      let src = `public/vertice-logo.svg`;
+      if (num === 2) src = `public/vertice-logo-v2.svg`;
+      if (num === 3) src = `public/vertice-logo-v3.svg`;
+
+      alert(`¡Excelente elección! La Propuesta ${num} ha sido seleccionada. Solo dime cuál prefieres en el chat para dejarla activa en todo el sitio web.`);
+    }
+  </script>
+</body>
+</html>
