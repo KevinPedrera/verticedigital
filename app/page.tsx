@@ -28,7 +28,7 @@ export default function Home() {
   const [email, setEmail] = useState<string>("");
   const [message, setMessage] = useState<string>("");
 
-  const bookingEndpoint = "https://script.google.com/macros/s/AKfycbx3swhCUwmoGW7Y2pspvjthqHaJfaNAVkwnjmqjNvAUclLPd76K7VDahIpsI3e5JanH2w/exec";
+  const bookingEndpoint = "https://script.google.com/macros/s/AKfycbyspvm4_98Ebwin6esVxe9OOO83ZC3WkbudrkKORE839ryOcNuIyU6Y2mFsjySIHQAbww/exec";
   const today = new Date().toISOString().split("T")[0];
 
   function validateStep(targetStep: number): boolean {
